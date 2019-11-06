@@ -8,13 +8,14 @@ import java.net.URLConnection;
 
 public class DataFromURL {
 
-    public static void readXMLToString() throws IOException {
-        URL url = new URL("http://api.nbp.pl/api/exchangerates/rates/a/chf/?format=xml");
-        URLConnection con = url.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String l;
-        while ((l=in.readLine())!=null) {
-            System.out.println(l);
+    public static void readXMLToString(String xmlUrl) throws IOException {
+        URL url = new URL(xmlUrl);
+        URLConnection urlConnection = url.openConnection();
+        BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+        String xml;
+        while ((xml=in.readLine())!=null) {
+            System.out.println(xml);
         }
     }
 }
+
