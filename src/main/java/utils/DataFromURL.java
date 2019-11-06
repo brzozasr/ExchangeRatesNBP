@@ -8,14 +8,16 @@ import java.net.URLConnection;
 
 public class DataFromURL {
 
-    public static void readXMLToString(String xmlUrl) throws IOException {
+    public static String readXMLToString(String xmlUrl) throws IOException {
         URL url = new URL(xmlUrl);
         URLConnection urlConnection = url.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        String xml;
-        while ((xml=in.readLine())!=null) {
-            System.out.println(xml);
+        String xmlLine;
+        String xml = null;
+        while ((xmlLine=in.readLine())!=null) {
+            xml = xml + xmlLine;
         }
+        return xml;
     }
 }
 
