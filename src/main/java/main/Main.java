@@ -2,7 +2,7 @@ package main;
 
 import java.io.IOException;
 
-import static api.ApiNBP.readXMLToString;
+import static utils.DataFromURL.readXMLToString;
 
 public class Main {
 
