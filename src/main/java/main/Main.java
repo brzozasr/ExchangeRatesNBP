@@ -12,7 +12,7 @@ public class Main {
         try {
             String xml = getXml("http://api.nbp.pl/api/exchangerates/rates/a/gbp/2012-01-01/2013-12-31/");
             System.out.println(xml);
-        } catch (IOException | IncorrectXmlException e) {
+        } catch (IncorrectXmlException | IOException e) {
             e.printStackTrace();
         }
 
