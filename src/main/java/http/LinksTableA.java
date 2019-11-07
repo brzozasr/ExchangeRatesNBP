@@ -1,5 +1,6 @@
 package http;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -8,15 +9,16 @@ import java.time.format.DateTimeFormatter;
  * Zarządu Narodowego Banku Polskiego z dnia 23 września 2002 r. w sprawie sposobu wyliczania
  * i ogłaszania bieżących kursów walut obcych (Dz. Urz. NBP z 2017 r. poz. 15).
  */
-public class LinksTableA {
+public class LinksTableA extends ReadHttpData {
 
     /**
      * Aktualnie obowiązująca tabela kursów typu A
      *
-     * @return String - link do xml
+     * @return String w formie xml
      */
-    public String currentTable() {
-        return "http://api.nbp.pl/api/exchangerates/tables/a/?format=xml";
+    public String currentTable() throws IOException {
+       String link = "http://api.nbp.pl/api/exchangerates/tables/a/?format=xml";
+       return readXMLToString(link);
     }
 
     /**
@@ -24,31 +26,34 @@ public class LinksTableA {
      *
      * @param topCount liczba określająca maksymalną liczność zwracanej serii
      *                 danych (limit wyników 67)
-     * @return String - link do xml
+     * @return String w formie xml
      */
-    public String lastTopCountTables(int topCount) {
-        return "http://api.nbp.pl/api/exchangerates/tables/a/last/" + topCount + "/?format=xml";
+    public String lastTopCountTables(int topCount) throws IOException {
+        String link = "http://api.nbp.pl/api/exchangerates/tables/a/last/" + topCount + "/?format=xml";
+        return readXMLToString(link);
     }
 
     /**
      * Tabela kursów typu A opublikowana w dniu dzisiejszym (albo brak danych)
      *
-     * @return String - link do xml
+     * @return String w formie xml
      */
-    public String tablePublishedToday() {
-        return "http://api.nbp.pl/api/exchangerates/tables/a/today/?format=xml";
+    public String tablePublishedToday() throws IOException {
+        String link = "http://api.nbp.pl/api/exchangerates/tables/a/today/?format=xml";
+        return readXMLToString(link);
     }
 
     /**
      * Tabela kursów typu A opublikowana w dniu {date} (albo brak danych)
      *
      * @param date data w formacie rrrr-MM-dd (standard ISO 8601)
-     * @return link do xml
+     * @return String w formie xml
      */
-    public String tablePublishedOnDate(LocalDate date) {
+    public String tablePublishedOnDate(LocalDate date) throws IOException {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formatDate = dateTimeFormatter.format(date);
-        return "http://api.nbp.pl/api/exchangerates/tables/a/" + formatDate + "/?format=xml";
+        String link = "http://api.nbp.pl/api/exchangerates/tables/a/" + formatDate + "/?format=xml";
+        return readXMLToString(link);
     }
 
     /**
@@ -57,12 +62,13 @@ public class LinksTableA {
      *
      * @param startDate data w formacie rrrr-MM-dd (standard ISO 8601)
      * @param endDate   data w formacie rrrr-MM-dd (standard ISO 8601)
-     * @return link do xml
+     * @return String w formie xml
      */
-    public String tablesPublishedOnDateRange(LocalDate startDate, LocalDate endDate) {
+    public String tablesPublishedOnDateRange(LocalDate startDate, LocalDate endDate) throws IOException {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String startFormatDate = dateTimeFormatter.format(startDate);
         String endFormatDate = dateTimeFormatter.format(endDate);
-        return "http://api.nbp.pl/api/exchangerates/tables/a/" + startFormatDate + "/" + endFormatDate + "/?format=xml";
+        String link = "http://api.nbp.pl/api/exchangerates/tables/a/" + startFormatDate + "/" + endFormatDate + "/?format=xml";
+        return readXMLToString(link);
     }
 }

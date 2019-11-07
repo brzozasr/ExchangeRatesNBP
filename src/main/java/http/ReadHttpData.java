@@ -6,14 +6,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ReadHttpData {
+class ReadHttpData {
 
     /**
      * @param xmlUrl
      * @return
      * @throws IOException
      */
-    public static String readXMLToString(String xmlUrl) throws IOException {
+    static String readXMLToString(String xmlUrl) throws IOException {
         URL url = new URL(xmlUrl);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         if (httpURLConnection.getResponseCode() == 200) {

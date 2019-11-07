@@ -4,13 +4,11 @@ import http.LinksTableA;
 
 import java.io.IOException;
 
-import static http.ReadHttpData.readXMLToString;
-
 public class Main {
 
     static public void main(String[] args) {
         try {
-            String xml = readXMLToString(new LinksTableA().lastTopCountTables(68));
+            String xml = new LinksTableA().lastTopCountTables(50);
             System.out.println(xml);
         } catch (IOException e) {
             e.printStackTrace();
