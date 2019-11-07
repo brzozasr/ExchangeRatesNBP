@@ -3,7 +3,6 @@ package main;
 import http.LinksTableA;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import static http.ReadHttpData.readXMLToString;
 
@@ -16,6 +15,5 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
