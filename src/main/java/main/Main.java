@@ -1,6 +1,5 @@
 package main;
 
-import enumtypes.CurrencyCode;
 import http.LinksTableA;
 
 import java.io.IOException;

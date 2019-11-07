@@ -19,8 +19,8 @@ public class LinksTableA extends ReadHttpData {
      * @return String w formie xml
      */
     public String currentTable() throws IOException {
-       String link = "http://api.nbp.pl/api/exchangerates/tables/a/?format=xml";
-       return readXMLToString(link);
+        String link = "http://api.nbp.pl/api/exchangerates/tables/a/?format=xml";
+        return readXMLToString(link);
     }
 
     /**
@@ -76,6 +76,7 @@ public class LinksTableA extends ReadHttpData {
 
     /**
      * Aktualnie obowiązujący kurs waluty {code} z tabeli kursów typu A
+     *
      * @param currencyCode enum CurrencyCode
      * @return String w formie xml
      * @throws IOException
