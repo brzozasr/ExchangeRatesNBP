@@ -1,5 +1,6 @@
 package main;
 
+import enumtypes.CurrencyCode;
 import http.LinksTableA;
 
 import java.io.IOException;
@@ -8,7 +9,7 @@ public class Main {
 
     static public void main(String[] args) {
         try {
-            String xml = new LinksTableA().lastTopCountTables(50);
+            String xml = new LinksTableA().lastTopCountTables(68);
             System.out.println(xml);
         } catch (IOException e) {
             e.printStackTrace();

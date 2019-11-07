@@ -1,5 +1,7 @@
 package http;
 
+import enumtypes.CurrencyCode;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -69,6 +71,18 @@ public class LinksTableA extends ReadHttpData {
         String startFormatDate = dateTimeFormatter.format(startDate);
         String endFormatDate = dateTimeFormatter.format(endDate);
         String link = "http://api.nbp.pl/api/exchangerates/tables/a/" + startFormatDate + "/" + endFormatDate + "/?format=xml";
+        return readXMLToString(link);
+    }
+
+    /**
+     * Aktualnie obowiązujący kurs waluty {code} z tabeli kursów typu A
+     * @param currencyCode enum CurrencyCode
+     * @return String w formie xml
+     * @throws IOException
+     */
+    public String currentExchangeRate(CurrencyCode currencyCode) throws IOException {
+        String code = currencyCode.toString().toLowerCase();
+        String link = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/?format=xml";
         return readXMLToString(link);
     }
 }
