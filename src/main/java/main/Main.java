@@ -2,7 +2,7 @@ package main;
 
 import java.io.IOException;
 
-import static utils.httpData.readXMLToString;
+import static http.ReadHttpData.readXMLToString;
 
 public class Main {
 
