@@ -75,7 +75,7 @@ public class LinksTableA extends ReadHttpData {
     }
 
     /**
-     * Aktualnie obowiązujący kurs waluty {code} z tabeli kursów typu A
+     * Aktualnie obowiązujący kurs waluty {currencyCode} z tabeli kursów typu A
      *
      * @param currencyCode enum CurrencyCode
      * @return String w formie xml
