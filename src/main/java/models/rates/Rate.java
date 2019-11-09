@@ -1,13 +1,13 @@
-package models.currency;
+package models.rates;
 
 import java.time.LocalDate;
 
-public class RatesMid {
+public class Rate {
     private String no;
     private LocalDate effectiveDate;
     private double mid;
 
-    public RatesMid(String no, LocalDate effectiveDate, double mid) {
+    public Rate(String no, LocalDate effectiveDate, double mid) {
         this.no = no;
         this.effectiveDate = effectiveDate;
         this.mid = mid;
