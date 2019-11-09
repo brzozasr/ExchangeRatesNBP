@@ -16,7 +16,8 @@ public class LinksTableA extends ReadHttpData {
     /**
      * Aktualnie obowiązująca tabela kursów typu A
      *
-     * @return String w formie xml
+     * @return String w formie json
+     * @throws IOException input / output exception
      */
     public String currentTable() throws IOException {
         String link = "http://api.nbp.pl/api/exchangerates/tables/a/?format=json";
@@ -28,7 +29,8 @@ public class LinksTableA extends ReadHttpData {
      *
      * @param topCount liczba określająca maksymalną liczność zwracanej serii
      *                 danych (limit wyników 67)
-     * @return String w formie xml
+     * @return String w formie json
+     * @throws IOException input / output exception
      */
     public String lastTopCountTables(int topCount) throws IOException {
         String link = "http://api.nbp.pl/api/exchangerates/tables/a/last/" + topCount + "/?format=json";
@@ -38,7 +40,8 @@ public class LinksTableA extends ReadHttpData {
     /**
      * Tabela kursów typu A opublikowana w dniu dzisiejszym (albo brak danych)
      *
-     * @return String w formie xml
+     * @return String w formie json
+     * @throws IOException input / output exception
      */
     public String tablePublishedToday() throws IOException {
         String link = "http://api.nbp.pl/api/exchangerates/tables/a/today/?format=json";
@@ -49,7 +52,8 @@ public class LinksTableA extends ReadHttpData {
      * Tabela kursów typu A opublikowana w dniu {date} (albo brak danych)
      *
      * @param date data w formacie rrrr-MM-dd (standard ISO 8601)
-     * @return String w formie xml
+     * @return String w formie json
+     * @throws IOException input / output exception
      */
     public String tablePublishedOnDate(LocalDate date) throws IOException {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -64,7 +68,8 @@ public class LinksTableA extends ReadHttpData {
      *
      * @param startDate data w formacie rrrr-MM-dd (standard ISO 8601)
      * @param endDate   data w formacie rrrr-MM-dd (standard ISO 8601)
-     * @return String w formie xml
+     * @return String w formie json
+     * @throws IOException input / output exception
      */
     public String tablesPublishedOnDateRange(LocalDate startDate, LocalDate endDate) throws IOException {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -78,12 +83,27 @@ public class LinksTableA extends ReadHttpData {
      * Aktualnie obowiązujący kurs waluty {currencyCode} z tabeli kursów typu A
      *
      * @param currencyCode enum CurrencyCode
-     * @return String w formie xml
-     * @throws IOException
+     * @return String w formie json
+     * @throws IOException input / output exception
      */
     public String currentExchangeRate(CurrencyCode currencyCode) throws IOException {
         String code = currencyCode.toString().toLowerCase();
         String link = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/?format=json";
+        return readJsonToString(link);
+    }
+
+    /**
+     * Seria ostatnich {topCount} kursów waluty {currencyCode} z tabeli kursów typu A
+     * (limit wyników 255)
+     *
+     * @param currencyCode enum CurrencyCode
+     * @param topCount     liczba określająca maksymalną liczność zwracanej serii danych
+     * @return String w formie json
+     * @throws IOException input / output exception
+     */
+    public String lastTopCountExchangeRate(CurrencyCode currencyCode, int topCount) throws IOException {
+        String code = currencyCode.toString().toLowerCase();
+        String link = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/last/" + topCount + "/?format=json";
         return readJsonToString(link);
     }
 }

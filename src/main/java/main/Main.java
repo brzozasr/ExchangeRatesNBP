@@ -9,7 +9,7 @@ public class Main {
 
     static public void main(String[] args) {
         try {
-            String json = new LinksTableA().currentTable();
+            String json = new LinksTableA().lastTopCountExchangeRate(CurrencyCode.USD, 5);
             System.out.println(json);
         } catch (IOException e) {
             e.printStackTrace();
