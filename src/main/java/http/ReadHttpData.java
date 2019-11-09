@@ -9,23 +9,23 @@ import java.net.URL;
 class ReadHttpData {
 
     /**
-     * @param xmlUrl
+     * @param jsonUrl
      * @return
      * @throws IOException
      */
-    static String readXMLToString(String xmlUrl) throws IOException {
-        URL url = new URL(xmlUrl);
+    static String readJsonToString(String jsonUrl) throws IOException {
+        URL url = new URL(jsonUrl);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         if (httpURLConnection.getResponseCode() == 200) {
             BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            String xmlLine;
-            String xml = null;
-            while ((xmlLine = in.readLine()) != null) {
-                xml += xmlLine;
+            String jsonLine;
+            String json = "";
+            while ((jsonLine = in.readLine()) != null) {
+                json += jsonLine;
             }
             in.close();
             httpURLConnection.disconnect();
-            return xml;
+            return json;
         } else {
             httpURLConnection.disconnect();
             return "Response code: " + httpURLConnection.getResponseCode() + " - " + httpURLConnection.getResponseMessage();

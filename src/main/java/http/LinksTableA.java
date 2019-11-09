@@ -19,8 +19,8 @@ public class LinksTableA extends ReadHttpData {
      * @return String w formie xml
      */
     public String currentTable() throws IOException {
-        String link = "http://api.nbp.pl/api/exchangerates/tables/a/?format=xml";
-        return readXMLToString(link);
+        String link = "http://api.nbp.pl/api/exchangerates/tables/a/?format=json";
+        return readJsonToString(link);
     }
 
     /**
@@ -31,8 +31,8 @@ public class LinksTableA extends ReadHttpData {
      * @return String w formie xml
      */
     public String lastTopCountTables(int topCount) throws IOException {
-        String link = "http://api.nbp.pl/api/exchangerates/tables/a/last/" + topCount + "/?format=xml";
-        return readXMLToString(link);
+        String link = "http://api.nbp.pl/api/exchangerates/tables/a/last/" + topCount + "/?format=json";
+        return readJsonToString(link);
     }
 
     /**
@@ -41,8 +41,8 @@ public class LinksTableA extends ReadHttpData {
      * @return String w formie xml
      */
     public String tablePublishedToday() throws IOException {
-        String link = "http://api.nbp.pl/api/exchangerates/tables/a/today/?format=xml";
-        return readXMLToString(link);
+        String link = "http://api.nbp.pl/api/exchangerates/tables/a/today/?format=json";
+        return readJsonToString(link);
     }
 
     /**
@@ -54,8 +54,8 @@ public class LinksTableA extends ReadHttpData {
     public String tablePublishedOnDate(LocalDate date) throws IOException {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formatDate = dateTimeFormatter.format(date);
-        String link = "http://api.nbp.pl/api/exchangerates/tables/a/" + formatDate + "/?format=xml";
-        return readXMLToString(link);
+        String link = "http://api.nbp.pl/api/exchangerates/tables/a/" + formatDate + "/?format=json";
+        return readJsonToString(link);
     }
 
     /**
@@ -70,8 +70,8 @@ public class LinksTableA extends ReadHttpData {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String startFormatDate = dateTimeFormatter.format(startDate);
         String endFormatDate = dateTimeFormatter.format(endDate);
-        String link = "http://api.nbp.pl/api/exchangerates/tables/a/" + startFormatDate + "/" + endFormatDate + "/?format=xml";
-        return readXMLToString(link);
+        String link = "http://api.nbp.pl/api/exchangerates/tables/a/" + startFormatDate + "/" + endFormatDate + "/?format=json";
+        return readJsonToString(link);
     }
 
     /**
@@ -83,7 +83,7 @@ public class LinksTableA extends ReadHttpData {
      */
     public String currentExchangeRate(CurrencyCode currencyCode) throws IOException {
         String code = currencyCode.toString().toLowerCase();
-        String link = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/?format=xml";
-        return readXMLToString(link);
+        String link = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/?format=json";
+        return readJsonToString(link);
     }
 }

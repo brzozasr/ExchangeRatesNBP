@@ -16,6 +16,11 @@
             <artifactId>jaxb-impl</artifactId>
             <version>2.4.0-b180830.0438</version>
         </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20190722</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
