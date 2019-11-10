@@ -17,7 +17,7 @@ public class Main {
         }
 
         try {
-            System.out.println(new ReadJSON().readRates().toString());
+            System.out.println(new ReadJSON().readExchangeRatesSeries().toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

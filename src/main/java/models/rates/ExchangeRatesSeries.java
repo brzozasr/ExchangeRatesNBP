@@ -1,18 +1,19 @@
 package models.rates;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExchangeRatesSeries {
     private String table;
     private String currency;
     private String code;
-    private ArrayList<Rate> rates;
+    private List<Rate> rates;
 
-    public ExchangeRatesSeries(String table, String currency, String code/*, ArrayList<Rate> rates*/) {
+    public ExchangeRatesSeries(String table, String currency, String code, List<Rate> rates) {
         this.table = table;
         this.currency = currency;
         this.code = code;
-        /*this.rates = rates;*/
+        this.rates = rates;
     }
 
     public String getTable() {
@@ -39,11 +40,11 @@ public class ExchangeRatesSeries {
         this.code = code;
     }
 
-    public ArrayList<Rate> getRates() {
+    public List<Rate> getRates() {
         return rates;
     }
 
-    public void setRates(ArrayList<Rate> rates) {
+    public void setRates(List<Rate> rates) {
         this.rates = rates;
     }
 
@@ -58,11 +59,9 @@ public class ExchangeRatesSeries {
     //TODO usunąć
     @Override
     public String toString() {
-        return "ExchangeRatesSeries{" +
-                "table='" + table + '\'' +
-                ", currency='" + currency + '\'' +
-                ", code='" + code + '\'' +
-                ", rates=" + rates +
-                '}';
+        return "table: " + table + "\n" +
+                "currency: " + currency + "\n" +
+                "code: " + code + "\n" +
+                "rates: " + rates + "\n";
     }
 }

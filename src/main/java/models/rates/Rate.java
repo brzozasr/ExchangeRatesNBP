@@ -1,13 +1,11 @@
 package models.rates;
 
-import java.time.LocalDate;
-
 public class Rate {
     private String no;
-    private LocalDate effectiveDate;
+    private String effectiveDate;
     private double mid;
 
-    public Rate(String no, LocalDate effectiveDate, double mid) {
+    public Rate(String no, String effectiveDate, double mid) {
         this.no = no;
         this.effectiveDate = effectiveDate;
         this.mid = mid;
@@ -21,11 +19,11 @@ public class Rate {
         this.no = no;
     }
 
-    public LocalDate getEffectiveDate() {
+    public String getEffectiveDate() {
         return effectiveDate;
     }
 
-    public void setEffectiveDate(LocalDate effectiveDate) {
+    public void setEffectiveDate(String effectiveDate) {
         this.effectiveDate = effectiveDate;
     }
 
@@ -35,5 +33,15 @@ public class Rate {
 
     public void setMid(double mid) {
         this.mid = mid;
+    }
+
+    //TODO usunąć
+    @Override
+    public String toString() {
+        return "Rate{" +
+                "no='" + no + '\'' +
+                ", effectiveDate='" + effectiveDate + '\'' +
+                ", mid=" + mid +
+                '}';
     }
 }
