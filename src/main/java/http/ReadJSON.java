@@ -21,7 +21,7 @@ public class ReadJSON {
         if (json.startsWith("Response code:")) {
             throw new NBPDataException(json);
         } else {
-            JSONObject jsonObject = new JSONObject(readJsonToString(jsonUrl));
+            JSONObject jsonObject = new JSONObject(json);
 
             String table = jsonObject.getString("table");
             String currency = jsonObject.getString("currency");

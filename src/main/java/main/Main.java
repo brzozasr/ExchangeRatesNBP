@@ -10,7 +10,7 @@ public class Main {
 
     static public void main(String[] args) {
         try {
-            ExchangeRatesSeries exchangeRatesSeries = new TableA().currentExchangeRate(CurrencyCodeTableA.USD);
+            ExchangeRatesSeries exchangeRatesSeries = new TableA().currentExchangeRate(CurrencyCodeTableA.CHF);
             System.out.println(exchangeRatesSeries.getTable());
             System.out.println(exchangeRatesSeries.getCurrency());
             System.out.println(exchangeRatesSeries.getCode());
