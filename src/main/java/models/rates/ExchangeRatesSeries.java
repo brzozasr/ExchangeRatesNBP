@@ -1,6 +1,5 @@
 package models.rates;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExchangeRatesSeries {
@@ -16,44 +15,32 @@ public class ExchangeRatesSeries {
         this.rates = rates;
     }
 
+    /**
+     * @return typ tabeli
+     */
     public String getTable() {
         return table;
     }
 
-    public void setTable(String table) {
-        this.table = table;
-    }
-
+    /**
+     * @return nazwa waluty
+     */
     public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
+    /**
+     * @return kod waluty
+     */
     public String getCode() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
+    /**
+     * @return lista kursów poszczególnych walut
+     */
     public List<Rate> getRates() {
         return rates;
-    }
-
-    public void setRates(List<Rate> rates) {
-        this.rates = rates;
-    }
-
-    public void addRate(Rate rate) {
-
-        if (rates == null) {
-            rates = new ArrayList<>();
-        }
-        rates.add(rate);
     }
 
     //TODO usunąć

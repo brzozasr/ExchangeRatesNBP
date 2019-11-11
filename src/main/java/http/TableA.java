@@ -1,17 +1,22 @@
 package http;
 
 import enumtypes.CurrencyCode;
+import exceptions.NBPDataException;
+import models.rates.ExchangeRatesSeries;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import static http.ReadHttpData.readJsonToString;
+import static http.ReadJSON.readExchangeRatesSeries;
 
 /**
  * Linki do kursów średnich walut obcych w złotych określonych w § 2 pkt 1 i 2 uchwały Nr 51/2002
  * Zarządu Narodowego Banku Polskiego z dnia 23 września 2002 r. w sprawie sposobu wyliczania
  * i ogłaszania bieżących kursów walut obcych (Dz. Urz. NBP z 2017 r. poz. 15).
  */
-public class LinksTableA extends ReadHttpData {
+public class TableA {
 
     /**
      * Aktualnie obowiązująca tabela kursów typu A
@@ -101,9 +106,14 @@ public class LinksTableA extends ReadHttpData {
      * @return String w formie json
      * @throws IOException input / output exception
      */
-    public String lastTopCountExchangeRate(CurrencyCode currencyCode, int topCount) throws IOException {
+    public ExchangeRatesSeries lastTopCountExchangeRate(CurrencyCode currencyCode, int topCount) throws IOException {
         String code = currencyCode.toString().toLowerCase();
-        String link = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/last/" + topCount + "/?format=json";
-        return readJsonToString(link);
+        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/last/" + topCount + "/?format=json";
+        try {
+            return readExchangeRatesSeries(jsonUrl);
+        } catch (NBPDataException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

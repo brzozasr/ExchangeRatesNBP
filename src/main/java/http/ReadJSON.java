@@ -1,5 +1,6 @@
 package http;
 
+import exceptions.NBPDataException;
 import models.rates.ExchangeRatesSeries;
 import models.rates.Rate;
 import org.json.JSONArray;
@@ -13,24 +14,48 @@ import static http.ReadHttpData.readJsonToString;
 
 public class ReadJSON {
 
-    public ExchangeRatesSeries readExchangeRatesSeries() throws IOException {
+    static ExchangeRatesSeries readExchangeRatesSeries(String jsonUrl) throws IOException, NBPDataException {
 
-        JSONObject jsonObject = new JSONObject(readJsonToString("http://api.nbp.pl/api/exchangerates/rates/a/usd/last/5/"));
+        String json = readJsonToString(jsonUrl);
 
-        String table = jsonObject.getString("table");
-        String currency = jsonObject.getString("currency");
-        String code = jsonObject.getString("code");
-        JSONArray rates = jsonObject.getJSONArray("rates");
+        if (json.startsWith("Response code:")) {
+            throw new NBPDataException(json);
+        } else {
+            JSONObject jsonObject = new JSONObject(readJsonToString(jsonUrl));
 
-        List<Rate> rateArrayList = new ArrayList<>();
+            String table = jsonObject.getString("table");
+            String currency = jsonObject.getString("currency");
+            String code = jsonObject.getString("code");
+            JSONArray rates = jsonObject.getJSONArray("rates");
 
-        for (int i = 0; i < rates.length(); i++) {
-            String no = rates.getJSONObject(i).getString("no");
-            String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
-            double mid = rates.getJSONObject(i).getDouble("mid");
-            rateArrayList.add(new Rate(no, effectiveDate, mid));
+            List<Rate> rateArrayList = new ArrayList<>();
+
+            for (int i = 0; i < rates.length(); i++) {
+                String no = rates.getJSONObject(i).getString("no");
+                String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
+                double mid = rates.getJSONObject(i).getDouble("mid");
+                rateArrayList.add(new Rate(no, effectiveDate, mid));
+            }
+
+            return new ExchangeRatesSeries(table, currency, code, rateArrayList);
         }
 
-        return new ExchangeRatesSeries(table, currency, code, rateArrayList);
+//        JSONObject jsonObject = new JSONObject(readJsonToString(jsonUrl));
+//
+//        String table = jsonObject.getString("table");
+//        String currency = jsonObject.getString("currency");
+//        String code = jsonObject.getString("code");
+//        JSONArray rates = jsonObject.getJSONArray("rates");
+//
+//        List<Rate> rateArrayList = new ArrayList<>();
+//
+//        for (int i = 0; i < rates.length(); i++) {
+//            String no = rates.getJSONObject(i).getString("no");
+//            String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
+//            double mid = rates.getJSONObject(i).getDouble("mid");
+//            rateArrayList.add(new Rate(no, effectiveDate, mid));
+//        }
+//
+//        return new ExchangeRatesSeries(table, currency, code, rateArrayList);
     }
 }
