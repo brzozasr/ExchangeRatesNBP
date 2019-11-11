@@ -39,23 +39,5 @@ public class ReadJSON {
 
             return new ExchangeRatesSeries(table, currency, code, rateArrayList);
         }
-
-//        JSONObject jsonObject = new JSONObject(readJsonToString(jsonUrl));
-//
-//        String table = jsonObject.getString("table");
-//        String currency = jsonObject.getString("currency");
-//        String code = jsonObject.getString("code");
-//        JSONArray rates = jsonObject.getJSONArray("rates");
-//
-//        List<Rate> rateArrayList = new ArrayList<>();
-//
-//        for (int i = 0; i < rates.length(); i++) {
-//            String no = rates.getJSONObject(i).getString("no");
-//            String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
-//            double mid = rates.getJSONObject(i).getDouble("mid");
-//            rateArrayList.add(new Rate(no, effectiveDate, mid));
-//        }
-//
-//        return new ExchangeRatesSeries(table, currency, code, rateArrayList);
     }
 }
