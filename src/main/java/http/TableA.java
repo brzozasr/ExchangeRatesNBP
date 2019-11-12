@@ -3,12 +3,14 @@ package http;
 import enumtypes.CurrencyCodeTableA;
 import exceptions.NBPDataException;
 import models.rates.ExchangeRatesSeries;
+import models.tables.ArrayOfExchangeRatesTable;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import static http.ReadHttpData.readJsonToString;
+import static http.ReadJSON.readArrayOfExchangeRatesTable;
 import static http.ReadJSON.readExchangeRatesSeries;
 
 /**
@@ -38,9 +40,14 @@ public class TableA {
      * @return String w formie json
      * @throws IOException input / output exception
      */
-    public String lastTopCountTables(int topCount) throws IOException {
-        String link = "http://api.nbp.pl/api/exchangerates/tables/a/last/" + topCount + "/?format=json";
-        return readJsonToString(link);
+    public ArrayOfExchangeRatesTable lastTopCountTables(int topCount) throws IOException {
+        String jsonUrl = "http://api.nbp.pl/api/exchangerates/tables/a/last/" + topCount + "/?format=json";
+        try {
+            return readArrayOfExchangeRatesTable(jsonUrl);
+        } catch (NBPDataException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /*

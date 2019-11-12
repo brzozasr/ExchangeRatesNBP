@@ -3,6 +3,7 @@ package main;
 import enumtypes.CurrencyCodeTableA;
 import http.TableA;
 import models.rates.ExchangeRatesSeries;
+import models.tables.ArrayOfExchangeRatesTable;
 
 import java.io.IOException;
 
@@ -30,6 +31,13 @@ public class Main {
             System.out.println(exchangeRatesSeries.getRates().get(0).getNo());
             System.out.println(exchangeRatesSeries.getRates().get(0).getEffectiveDate());
             System.out.println(exchangeRatesSeries.getRates().get(0).getMid());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ArrayOfExchangeRatesTable arrayOfExchangeRatesTable = new TableA().lastTopCountTables(1);
+            System.out.println(arrayOfExchangeRatesTable);
         } catch (IOException e) {
             e.printStackTrace();
         }

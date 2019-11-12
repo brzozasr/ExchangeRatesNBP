@@ -6,9 +6,9 @@ public class ExchangeRatesTable {
     private String table;
     private String no;
     private String effectiveDate;
-    private List<Rate> rates;
+    private List<RateTables> rates;
 
-    public ExchangeRatesTable(String table, String no, String effectiveDate, List<Rate> rates) {
+    public ExchangeRatesTable(String table, String no, String effectiveDate, List<RateTables> rates) {
         this.table = table;
         this.no = no;
         this.effectiveDate = effectiveDate;
@@ -30,7 +30,19 @@ public class ExchangeRatesTable {
         return effectiveDate;
     }
 
-    public List<Rate> getRates() {
+    public List<RateTables> getRates() {
         return rates;
+    }
+
+    //TODO usunąć
+
+    @Override
+    public String toString() {
+        return "ExchangeRatesTable{" +
+                "table='" + table + '\'' +
+                ", no='" + no + '\'' +
+                ", effectiveDate='" + effectiveDate + '\'' +
+                ", rates=" + rates +
+                '}';
     }
 }

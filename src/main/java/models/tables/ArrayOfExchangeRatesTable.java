@@ -13,4 +13,12 @@ public class ArrayOfExchangeRatesTable {
     public List<ExchangeRatesTable> getExchangeRatesTables() {
         return exchangeRatesTables;
     }
+
+    //TODO usunąć
+    @Override
+    public String toString() {
+        return "ArrayOfExchangeRatesTable{" +
+                "exchangeRatesTables=" + exchangeRatesTables +
+                '}';
+    }
 }
