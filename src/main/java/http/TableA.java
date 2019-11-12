@@ -8,6 +8,7 @@ import models.tables.ArrayOfExchangeRatesTable;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import static http.ReadHttpData.readJsonToString;
 import static http.ReadJSON.readArrayOfExchangeRatesTable;
@@ -210,6 +211,39 @@ public class TableA {
     public ExchangeRatesSeries publishedOnDateRangeExchangeRate(CurrencyCodeTableA currencyCodeTableA, LocalDate startDate, LocalDate endDate) throws IOException {
         String code = currencyCodeTableA.toString().toLowerCase();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String startFormatDate = dateTimeFormatter.format(startDate);
+        String endFormatDate = dateTimeFormatter.format(endDate);
+        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/" + startFormatDate + "/" + endFormatDate + "/?format=json";
+        try {
+            return readExchangeRatesSeries(jsonUrl);
+        } catch (NBPDataException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ExchangeRatesSeries currencyExchangeRate(CurrencyCodeTableA currencyCodeTableA) throws IOException {
+        String code = currencyCodeTableA.toString().toLowerCase();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate startDate = LocalDate.of(2002, 01, 02);
+        LocalDate endDate = LocalDate.now();
+
+        long days = ChronoUnit.DAYS.between(startDate, endDate);
+        int counter = (int)Math.ceil((double) days / 367);
+
+        LocalDate startDateUrl = startDate;
+        LocalDate endDateUrl = startDateUrl.plusDays(367);
+
+        for (int i = 0; i < counter; i++) {
+            System.out.println(startDateUrl + " <-> " + endDateUrl);
+            startDateUrl = startDateUrl.plusDays(368);
+            if (i < counter - 2) {
+                endDateUrl = startDateUrl.plusDays(367);
+            } else {
+                endDateUrl = LocalDate.now();
+            }
+        }
+
         String startFormatDate = dateTimeFormatter.format(startDate);
         String endFormatDate = dateTimeFormatter.format(endDate);
         String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/" + startFormatDate + "/" + endFormatDate + "/?format=json";

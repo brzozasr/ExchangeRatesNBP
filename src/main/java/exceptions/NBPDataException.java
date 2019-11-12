@@ -1,9 +1,7 @@
 package exceptions;
 
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 public class NBPDataException extends Exception {
 
