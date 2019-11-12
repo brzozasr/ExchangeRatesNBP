@@ -36,8 +36,14 @@ public class Main {
         }
 
         try {
-            ArrayOfExchangeRatesTable arrayOfExchangeRatesTable = new TableA().lastTopCountTables(1);
-            System.out.println(arrayOfExchangeRatesTable);
+            ArrayOfExchangeRatesTable arrayOfExchangeRatesTable = new TableA().lastTopCountTables(2);
+            //System.out.println(arrayOfExchangeRatesTable);
+            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getTable());
+            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getNo());
+            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getEffectiveDate());
+            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(0).getCurrency());
+            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(0).getCode());
+            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(0).getMid());
         } catch (IOException e) {
             e.printStackTrace();
         }
