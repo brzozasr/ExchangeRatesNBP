@@ -6,10 +6,20 @@ import models.rates.ExchangeRatesSeries;
 import models.tables.ArrayOfExchangeRatesTable;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class Main {
 
     static public void main(String[] args) {
+
+        try {
+            ExchangeRatesSeries exchangeRatesSeries = new TableA().publishedOnDateRangeExchangeRate(CurrencyCodeTableA.USD,
+                    LocalDate.of(2001, 12, 01), LocalDate.of(2002, 03, 01));
+            //System.out.println(exchangeRatesSeries);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         try {
             ExchangeRatesSeries exchangeRatesSeries = new TableA().currentExchangeRate(CurrencyCodeTableA.CHF);
             System.out.println(exchangeRatesSeries.getTable());
