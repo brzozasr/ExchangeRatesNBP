@@ -14,14 +14,15 @@ public class Main {
 
         try {
             ExchangeRatesSeries exchangeRatesSeries = new TableA().publishedOnDateRangeExchangeRate(CurrencyCodeTableA.USD,
-                    LocalDate.of(2001, 12, 01), LocalDate.of(2002, 03, 01));
-            //System.out.println(exchangeRatesSeries);
+                    LocalDate.of(2002, 01, 02), LocalDate.of(2002, 11, 01));
+            System.out.println(exchangeRatesSeries);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         try {
-            ExchangeRatesSeries exchangeRatesSeries = new TableA().currentExchangeRate(CurrencyCodeTableA.CHF);
+            ExchangeRatesSeries exchangeRatesSeries = new TableA().publishedOnDateExchangeRate(CurrencyCodeTableA.USD,
+                    LocalDate.of(2002,01,03));
             System.out.println(exchangeRatesSeries.getTable());
             System.out.println(exchangeRatesSeries.getCurrency());
             System.out.println(exchangeRatesSeries.getCode());
@@ -46,7 +47,7 @@ public class Main {
         }
 
         try {
-            ArrayOfExchangeRatesTable arrayOfExchangeRatesTable = new TableA().lastTopCountTables(2);
+            ArrayOfExchangeRatesTable arrayOfExchangeRatesTable = new TableA().publishedOnDateTable(LocalDate.of(2002,01,04));
             //System.out.println(arrayOfExchangeRatesTable);
             System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getTable());
             System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getNo());
@@ -54,6 +55,9 @@ public class Main {
             System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(0).getCurrency());
             System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(0).getCode());
             System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(0).getMid());
+            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(1).getCurrency());
+            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(1).getCode());
+            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(1).getMid());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -21,6 +21,10 @@ public class ReadJSON {
 
         String json = readJsonToString(jsonUrl);
 
+        if(json.contains("country")) {
+            json = json.replaceAll("country", "currency");
+        }
+
         if (json.startsWith("Response code:")) {
             throw new NBPDataException(json);
         } else {
@@ -47,6 +51,10 @@ public class ReadJSON {
     static ArrayOfExchangeRatesTable readArrayOfExchangeRatesTable(String jsonUrl) throws IOException, NBPDataException {
 
         String json = readJsonToString(jsonUrl);
+
+        if(json.contains("country")) {
+            json = json.replaceAll("country", "currency");
+        }
 
         if (json.startsWith("Response code:")) {
             throw new NBPDataException(json);
