@@ -15,6 +15,10 @@ public class ExchangeRatesSeries {
         this.rates = rates;
     }
 
+    public ExchangeRatesSeries(List<Rate> rates) {
+        this.rates = rates;
+    }
+
     /**
      * @return typ tabeli
      */

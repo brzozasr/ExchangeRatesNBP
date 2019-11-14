@@ -11,8 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 import static http.ReadHttpData.readJsonToString;
-import static http.ReadJSON.readArrayOfExchangeRatesTable;
-import static http.ReadJSON.readExchangeRatesSeries;
+import static http.ReadJSON.*;
 
 /**
  * Linki do kursów średnich walut obcych w złotych określonych w § 2 pkt 1 i 2 uchwały Nr 51/2002
@@ -225,33 +224,49 @@ public class TableA {
     public ExchangeRatesSeries currencyExchangeRate(CurrencyCodeTableA currencyCodeTableA) throws IOException {
         String code = currencyCodeTableA.toString().toLowerCase();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate startDate = LocalDate.of(2002, 01, 02);
+        LocalDate startDate = LocalDate.of(2002, 1, 2);
         LocalDate endDate = LocalDate.now();
+        String jsonUrl = "";
+        String json = "";
+        String jsonTrim = "";
 
         long days = ChronoUnit.DAYS.between(startDate, endDate);
-        int counter = (int)Math.ceil((double) days / 367);
+        int counter = (int) Math.ceil((double) days / 367);
 
         LocalDate startDateUrl = startDate;
         LocalDate endDateUrl = startDateUrl.plusDays(367);
 
         for (int i = 0; i < counter; i++) {
-            System.out.println(startDateUrl + " <-> " + endDateUrl);
+            String startFormatDate = dateTimeFormatter.format(startDateUrl);
+            String endFormatDate = dateTimeFormatter.format(endDateUrl);
+            jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/" + startFormatDate + "/" + endFormatDate + "/?format=json";
             startDateUrl = startDateUrl.plusDays(368);
             if (i < counter - 2) {
                 endDateUrl = startDateUrl.plusDays(367);
             } else {
                 endDateUrl = LocalDate.now();
             }
+
+            try {
+                json = readJsonToString(jsonUrl);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if(!json.startsWith("Response code:")) {
+                int firstIndex = json.indexOf(":[");
+                int lastIndex = json.indexOf("]}");
+                json = json.substring(firstIndex + 2, lastIndex);
+                jsonTrim = jsonTrim.concat(json).concat(",");
+            }
         }
 
-        String startFormatDate = dateTimeFormatter.format(startDate);
-        String endFormatDate = dateTimeFormatter.format(endDate);
-        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/" + startFormatDate + "/" + endFormatDate + "/?format=json";
-        try {
-            return readExchangeRatesSeries(jsonUrl);
-        } catch (NBPDataException e) {
-            e.printStackTrace();
+        if (jsonTrim.endsWith(",")) {
+            jsonTrim = jsonTrim.substring(0, jsonTrim.length() - 1);
         }
-        return null;
+
+        jsonTrim = "{\"rates\":[" + jsonTrim + "]}";
+
+        return readMultiExchangeRatesSeries(jsonTrim);
     }
 }

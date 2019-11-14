@@ -26,10 +26,8 @@ public class Rate {
     //TODO usunąć
     @Override
     public String toString() {
-        return "Rate{" +
-                "no='" + no + '\'' +
+        return "no='" + no + '\'' +
                 ", effectiveDate='" + effectiveDate + '\'' +
-                ", mid=" + mid +
-                '}';
+                ", mid='" + mid + '\'';
     }
 }

@@ -6,14 +6,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-class ReadHttpData {
+public class ReadHttpData {
 
     /**
      * @param jsonUrl
      * @return
      * @throws IOException
      */
-    static String readJsonToString(String jsonUrl) throws IOException {
+    public static String readJsonToString(String jsonUrl) throws IOException {
         URL url = new URL(jsonUrl);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         if (httpURLConnection.getResponseCode() == 200) {

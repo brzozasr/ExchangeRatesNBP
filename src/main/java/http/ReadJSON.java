@@ -21,7 +21,7 @@ public class ReadJSON {
 
         String json = readJsonToString(jsonUrl);
 
-        if(json.contains("country")) {
+        if (json.contains("country")) {
             json = json.replaceAll("country", "currency");
         }
 
@@ -48,11 +48,29 @@ public class ReadJSON {
         }
     }
 
+    static ExchangeRatesSeries readMultiExchangeRatesSeries(String json) throws IOException {
+
+        JSONObject jsonObject = new JSONObject(json);
+
+        JSONArray rates = jsonObject.getJSONArray("rates");
+
+        List<Rate> rateArrayList = new ArrayList<>();
+
+        for (int i = 0; i < rates.length(); i++) {
+            String no = rates.getJSONObject(i).getString("no");
+            String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
+            double mid = rates.getJSONObject(i).getDouble("mid");
+            rateArrayList.add(new Rate(no, effectiveDate, mid));
+        }
+
+        return new ExchangeRatesSeries(rateArrayList);
+    }
+
     static ArrayOfExchangeRatesTable readArrayOfExchangeRatesTable(String jsonUrl) throws IOException, NBPDataException {
 
         String json = readJsonToString(jsonUrl);
 
-        if(json.contains("country")) {
+        if (json.contains("country")) {
             json = json.replaceAll("country", "currency");
         }
 
@@ -64,12 +82,12 @@ public class ReadJSON {
             List<ExchangeRatesTable> listExchangeRatesTables = new ArrayList<>();
             List<RateTables> listRateTables = new ArrayList<>();
 
-            for(int i = 0; i < arrayOfExchangeRatesTable.length(); i++) {
+            for (int i = 0; i < arrayOfExchangeRatesTable.length(); i++) {
                 String table = arrayOfExchangeRatesTable.getJSONObject(i).getString("table");
                 String no = arrayOfExchangeRatesTable.getJSONObject(i).getString("no");
                 String effectiveDate = arrayOfExchangeRatesTable.getJSONObject(i).getString("effectiveDate");
                 JSONArray arrayRatesTables = arrayOfExchangeRatesTable.getJSONObject(i).getJSONArray("rates");
-                for(int j = 0; j < arrayRatesTables.length(); j++) {
+                for (int j = 0; j < arrayRatesTables.length(); j++) {
                     String currency = arrayRatesTables.getJSONObject(j).getString("currency");
                     String code = arrayRatesTables.getJSONObject(j).getString("code");
                     double mid = arrayRatesTables.getJSONObject(j).getDouble("mid");
