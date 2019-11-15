@@ -3,7 +3,7 @@ package models.tables;
 import java.util.List;
 
 /**
- * Model kompletnej tabeli kursowej (lub serii tabel kursowych) określonego typu.
+ * Model tablicy z kompletymi tabelami kursów walut określonego typu.
  */
 public class ArrayOfExchangeRatesTable {
 

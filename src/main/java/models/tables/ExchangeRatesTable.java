@@ -47,7 +47,8 @@ public class ExchangeRatesTable {
     }
 
     /**
-     * Pobiera lista kursów poszczególnych walut w tabeli z obiektu ArrayOfExchangeRatesTable
+     * Pobiera listę kursów poszczególnych walut w tabeli z obiektu ArrayOfExchangeRatesTable
+     *
      * @return listę kursów poszczególnych walut w tabeli {List&#60;RateTables&#62;}:<br>
      * currency - nazwa waluty (np. "dolar amerykański" lub z tabel archiwalnych "USA")<br>
      * code - kod waluty (np. "USD", "EUR")<br>

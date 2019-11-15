@@ -17,7 +17,8 @@ import static http.ReadJSON.*;
 /**
  * Kursy średnie walut obcych w złotych określonych w § 2 pkt 1 i 2 uchwały Nr 51/2002
  * Zarządu Narodowego Banku Polskiego z dnia 23 września 2002 r. w sprawie sposobu wyliczania
- * i ogłaszania bieżących kursów walut obcych (Dz. Urz. NBP z 2017 r. poz. 15).
+ * i ogłaszania bieżących kursów walut obcych (Dz. Urz. NBP z 2017 r. poz. 15).<br>
+ * Tabela A kursów średnich walut obcych aktualizowana jest w każdy dzień roboczy, między godziną 11:45 a 12:15.<br>
  * Dane archiwalne dostępne są dla kursów walut – od 2 stycznia 2002 r.<br>
  * Dane kursów walut udostępniane są na dwa sposoby:<br>
  * - jako kompletna tabela kursów (lub seria tabel kursowych) - typu A {ArrayOfExchangeRatesTable},<br>
