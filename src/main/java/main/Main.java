@@ -3,14 +3,8 @@ package main;
 import enumtypes.CurrencyCodeTableA;
 import http.TableA;
 import models.rates.ExchangeRatesSeries;
-import models.tables.ArrayOfExchangeRatesTable;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-
-import static http.ReadHttpData.readJsonToString;
 
 public class Main {
 
@@ -64,7 +58,7 @@ public class Main {
 //        System.out.println(jsonTrim);
 
         try {
-            ExchangeRatesSeries exchangeRatesSeries = new TableA().currencyExchangeRate(CurrencyCodeTableA.ITL);
+            ExchangeRatesSeries exchangeRatesSeries = new TableA().currencyExchangeRate(CurrencyCodeTableA.USD);
             System.out.println(exchangeRatesSeries.getTable());
             System.out.println(exchangeRatesSeries.getCurrency());
             System.out.println(exchangeRatesSeries.getCode());

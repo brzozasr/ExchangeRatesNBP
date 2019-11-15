@@ -6,14 +6,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ReadHttpData {
+class ReadHttpData {
 
     /**
-     * @param jsonUrl
-     * @return
-     * @throws IOException
+     * Metoda odczytuje dane z linka {jsonUrl} i zwraca je w postaci JSON.
+     *
+     * @param jsonUrl link (url) z którego pobierane są dane w formie JSON
+     * @return dane w formacie JSON, jeżeli są niedostępne to zwraca kod i wiadomość błędu
+     * @throws IOException input / output exception (wyjątek)
      */
-    public static String readJsonToString(String jsonUrl) throws IOException {
+    static String readJsonToString(String jsonUrl) throws IOException {
         URL url = new URL(jsonUrl);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         if (httpURLConnection.getResponseCode() == 200) {
@@ -21,7 +23,7 @@ public class ReadHttpData {
             String jsonLine;
             String json = "";
             while ((jsonLine = in.readLine()) != null) {
-                json += jsonLine;
+                json = json.concat(jsonLine);
             }
             in.close();
             httpURLConnection.disconnect();

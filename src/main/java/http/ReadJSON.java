@@ -15,8 +15,16 @@ import java.util.List;
 
 import static http.ReadHttpData.readJsonToString;
 
-public class ReadJSON {
+class ReadJSON {
 
+    /**
+     * Metoda odczytuje dane z linka {jsonUrl} i dodaje je do obiektu {ExchangeRatesSeries}
+     *
+     * @param jsonUrl link (url), z którego pobierane są dane w formie JSON
+     * @return obiekt {ExchangeRatesSeries}
+     * @throws IOException      input / output exception (wyjątek)
+     * @throws NBPDataException wyjątek zwracany przez stronę NBP
+     */
     static ExchangeRatesSeries readExchangeRatesSeries(String jsonUrl) throws IOException, NBPDataException {
 
         String json = readJsonToString(jsonUrl);
@@ -48,24 +56,44 @@ public class ReadJSON {
         }
     }
 
-    static ExchangeRatesSeries readMultiExchangeRatesSeries(String json) throws IOException {
+    /**
+     * Metoda odczytuje dane z formatu JSON {json} i dodaje je do obiektu {ExchangeRatesSeries}
+     *
+     * @param json dane w formacie JSON
+     * @return obiekt {ExchangeRatesSeries}
+     * @throws IOException      input / output exception (wyjątek)
+     * @throws NBPDataException wyjątek zwracany przez stronę NBP
+     */
+    static ExchangeRatesSeries readMultiExchangeRatesSeries(String json) throws IOException, NBPDataException {
 
-        JSONObject jsonObject = new JSONObject(json);
+        if (json.equals("")) {
+            throw new NBPDataException("Response code: 404 - Not Found - Brak danych");
+        } else {
+            JSONObject jsonObject = new JSONObject(json);
 
-        JSONArray rates = jsonObject.getJSONArray("rates");
+            JSONArray rates = jsonObject.getJSONArray("rates");
 
-        List<Rate> rateArrayList = new ArrayList<>();
+            List<Rate> rateArrayList = new ArrayList<>();
 
-        for (int i = 0; i < rates.length(); i++) {
-            String no = rates.getJSONObject(i).getString("no");
-            String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
-            double mid = rates.getJSONObject(i).getDouble("mid");
-            rateArrayList.add(new Rate(no, effectiveDate, mid));
+            for (int i = 0; i < rates.length(); i++) {
+                String no = rates.getJSONObject(i).getString("no");
+                String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
+                double mid = rates.getJSONObject(i).getDouble("mid");
+                rateArrayList.add(new Rate(no, effectiveDate, mid));
+            }
+
+            return new ExchangeRatesSeries(rateArrayList);
         }
-
-        return new ExchangeRatesSeries(rateArrayList);
     }
 
+    /**
+     * Metoda odczytuje dane z linka {jsonUrl} i dodaje je do obiektu {ArrayOfExchangeRatesTable}
+     *
+     * @param jsonUrl link (url), z którego pobierane są dane w formie JSON
+     * @return obiekt {ArrayOfExchangeRatesTable}
+     * @throws IOException      input / output exception (wyjątek)
+     * @throws NBPDataException wyjątek zwracany przez stronę NBP
+     */
     static ArrayOfExchangeRatesTable readArrayOfExchangeRatesTable(String jsonUrl) throws IOException, NBPDataException {
 
         String json = readJsonToString(jsonUrl);

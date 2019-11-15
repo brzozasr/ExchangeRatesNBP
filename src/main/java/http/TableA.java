@@ -6,6 +6,7 @@ import models.rates.ExchangeRatesSeries;
 import models.tables.ArrayOfExchangeRatesTable;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -14,10 +15,13 @@ import static http.ReadHttpData.readJsonToString;
 import static http.ReadJSON.*;
 
 /**
- * Linki do kursów średnich walut obcych w złotych określonych w § 2 pkt 1 i 2 uchwały Nr 51/2002
+ * Kursy średnie walut obcych w złotych określonych w § 2 pkt 1 i 2 uchwały Nr 51/2002
  * Zarządu Narodowego Banku Polskiego z dnia 23 września 2002 r. w sprawie sposobu wyliczania
  * i ogłaszania bieżących kursów walut obcych (Dz. Urz. NBP z 2017 r. poz. 15).
- * Dane archiwalne dostępne są dla kursów walut – od 2 stycznia 2002 r.
+ * Dane archiwalne dostępne są dla kursów walut – od 2 stycznia 2002 r.<br>
+ * Dane kursów walut udostępniane są na dwa sposoby:<br>
+ * - jako kompletna tabela kursów (lub seria tabel kursowych) - typu A {ArrayOfExchangeRatesTable},<br>
+ * - jako kurs (lub seria kursów) pojedynczej waluty dla tabeli typu A {ExchangeRatesSeries}.
  */
 public class TableA {
 
@@ -42,7 +46,7 @@ public class TableA {
      *
      * @param topCount liczba określająca maksymalną liczność zwracanej serii
      *                 danych (limit wyników 67)
-     * @return objekt ArrayOfExchangeRatesTable
+     * @return obiekt ArrayOfExchangeRatesTable
      * @throws IOException input / output exception (wyjątek)
      */
     public ArrayOfExchangeRatesTable lastTopCountTables(int topCount) throws IOException {
@@ -60,7 +64,7 @@ public class TableA {
      * Tabela A kursów średnich walut obcych aktualizowana jest w każdy dzień roboczy,
      * między godziną 11:45 a 12:15.
      *
-     * @return objekt ArrayOfExchangeRatesTable
+     * @return obiekt ArrayOfExchangeRatesTable
      * @throws IOException input / output exception (wyjątek)
      */
     public ArrayOfExchangeRatesTable publishedTodayTable() throws IOException {
@@ -78,7 +82,7 @@ public class TableA {
      * Dane archiwalne dostępne są dla kursów walut – od 2 stycznia 2002 r.
      *
      * @param date LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
-     * @return objekt ArrayOfExchangeRatesTable
+     * @return obiekt ArrayOfExchangeRatesTable
      * @throws IOException input / output exception (wyjątek)
      */
     public ArrayOfExchangeRatesTable publishedOnDateTable(LocalDate date) throws IOException {
@@ -99,7 +103,7 @@ public class TableA {
      *
      * @param startDate LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
      * @param endDate   LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
-     * @return objekt ArrayOfExchangeRatesTable
+     * @return obiekt ArrayOfExchangeRatesTable
      * @throws IOException input / output exception (wyjątek)
      */
     public ArrayOfExchangeRatesTable publishedOnDateRangeTables(LocalDate startDate, LocalDate endDate) throws IOException {
@@ -119,7 +123,7 @@ public class TableA {
      * Aktualnie obowiązujący kurs waluty {currencyCodeTableA} z tabeli kursów typu A
      *
      * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
-     * @return objekt ExchangeRatesSeries
+     * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
     public ExchangeRatesSeries currentExchangeRate(CurrencyCodeTableA currencyCodeTableA) throws IOException {
@@ -139,7 +143,7 @@ public class TableA {
      * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
      * @param topCount           liczba określająca maksymalną liczność zwracanej serii danych
      *                           (limit wyników 255)
-     * @return objekt ExchangeRatesSeries
+     * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
     public ExchangeRatesSeries lastTopCountExchangeRate(CurrencyCodeTableA currencyCodeTableA, int topCount) throws IOException {
@@ -159,7 +163,7 @@ public class TableA {
      * Tabela A kursów średnich walut obcych aktualizowana jest w każdy dzień roboczy, między godziną 11:45 a 12:15.
      *
      * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
-     * @return objekt ExchangeRatesSeries
+     * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
     public ExchangeRatesSeries publishedTodayExchangeRate(CurrencyCodeTableA currencyCodeTableA) throws IOException {
@@ -179,7 +183,7 @@ public class TableA {
      *
      * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
      * @param date               LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
-     * @return objekt ExchangeRatesSeries
+     * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
     public ExchangeRatesSeries publishedOnDateExchangeRate(CurrencyCodeTableA currencyCodeTableA, LocalDate date) throws IOException {
@@ -189,7 +193,7 @@ public class TableA {
         String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/" + formatDate + "/?format=json";
         try {
             return readExchangeRatesSeries(jsonUrl);
-        } catch (NBPDataException e) {
+        } catch (NBPDataException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         return null;
@@ -204,7 +208,7 @@ public class TableA {
      * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
      * @param startDate          LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
      * @param endDate            LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
-     * @return objekt ExchangeRatesSeries
+     * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
     public ExchangeRatesSeries publishedOnDateRangeExchangeRate(CurrencyCodeTableA currencyCodeTableA, LocalDate startDate, LocalDate endDate) throws IOException {
@@ -215,12 +219,21 @@ public class TableA {
         String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/" + startFormatDate + "/" + endFormatDate + "/?format=json";
         try {
             return readExchangeRatesSeries(jsonUrl);
-        } catch (NBPDataException e) {
+        } catch (NBPDataException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    /**
+     * Seria wszystkich kursów waluty {currencyCodeTableA} z tabeli kursów typu A.
+     * Dane są dostępnych od 2 stycznia 2002 r. do bieżącej daty.<br>
+     * Archiwalne dane dla kursów walut dostępne są od 2 stycznia 2002 r.
+     *
+     * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
+     * @return obiekt ExchangeRatesSeries
+     * @throws IOException input / output exception (wyjątek)
+     */
     public ExchangeRatesSeries currencyExchangeRate(CurrencyCodeTableA currencyCodeTableA) throws IOException {
         String code = currencyCodeTableA.toString().toLowerCase();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -253,7 +266,7 @@ public class TableA {
                 e.printStackTrace();
             }
 
-            if(!json.startsWith("Response code:")) {
+            if (!json.startsWith("Response code:")) {
                 int firstIndex = json.indexOf(":[");
                 int lastIndex = json.indexOf("]}");
                 json = json.substring(firstIndex + 2, lastIndex);
@@ -265,8 +278,15 @@ public class TableA {
             jsonTrim = jsonTrim.substring(0, jsonTrim.length() - 1);
         }
 
-        jsonTrim = "{\"rates\":[" + jsonTrim + "]}";
+        if (!jsonTrim.equals("")) {
+            jsonTrim = "{\"rates\":[" + jsonTrim + "]}";
+        }
 
-        return readMultiExchangeRatesSeries(jsonTrim);
+        try {
+            return readMultiExchangeRatesSeries(jsonTrim);
+        } catch (NBPDataException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

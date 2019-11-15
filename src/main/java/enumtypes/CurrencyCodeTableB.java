@@ -1,5 +1,8 @@
 package enumtypes;
 
+/**
+ * Trzyliterowy kod waluty (standard ISO 4217) dla tabeli typu B
+ */
 public enum CurrencyCodeTableB {
     AFN, MGA, PAB, ETB, VES, BOB, CRC, SVC, NIO, GMD, MKD, DZD, BHD, IQD, JOD, KWD, LYD, RSD, TND, MAD, AED,
     STN, BSD, BBD, BZD, BND, FJD, GYD, JMD, LRD, NAD, SRD, TTD, XCD, SBD, VND, AMD, CVE, AWG, BIF, XOF, XAF,
