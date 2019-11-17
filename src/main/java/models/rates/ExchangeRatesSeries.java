@@ -8,12 +8,16 @@ import java.util.List;
  */
 public class ExchangeRatesSeries {
     private String table;
+    private String country;
+    private String symbol;
     private String currency;
     private String code;
     private List<Rate> rates;
 
-    public ExchangeRatesSeries(String table, String currency, String code, List<Rate> rates) {
+    public ExchangeRatesSeries(String table, String country, String symbol, String currency, String code, List<Rate> rates) {
         this.table = table;
+        this.country = country;
+        this.symbol = symbol;
         this.currency = currency;
         this.code = code;
         this.rates = rates;
@@ -30,6 +34,26 @@ public class ExchangeRatesSeries {
      */
     public String getTable() {
         return table;
+    }
+
+    /**
+     * Pobiera nazwę kraju z obiektu ExchangeRatesSeries
+     * (dotyczy kursów archiwalnych)
+     *
+     * @return nazwa kraju (np. Australia, Afganistan)
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * Pobiera symbol waluty (numeryczny) z obiektu ExchangeRatesSeries
+     * (dotyczy kursów archiwalnych)
+     *
+     * @return numeryczny symbol waluty (np. 787, 662)
+     */
+    public String getSymbol() {
+        return symbol;
     }
 
     /**
@@ -60,14 +84,5 @@ public class ExchangeRatesSeries {
      */
     public List<Rate> getRates() {
         return rates;
-    }
-
-    //TODO usunąć
-    @Override
-    public String toString() {
-        return "table: " + table + "\n" +
-                "currency: " + currency + "\n" +
-                "code: " + code + "\n" +
-                "rates: " + rates + "\n";
     }
 }

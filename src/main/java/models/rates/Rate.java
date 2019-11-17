@@ -41,12 +41,4 @@ public class Rate {
     public double getMid() {
         return mid;
     }
-
-    //TODO usunąć
-    @Override
-    public String toString() {
-        return "no='" + no + '\'' +
-                ", effectiveDate='" + effectiveDate + '\'' +
-                ", mid='" + mid + '\'';
-    }
 }

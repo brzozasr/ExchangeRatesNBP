@@ -9,7 +9,7 @@ public enum CurrencyCodeTableB {
      */
     AED,
     /**
-     * afgani (Afganistan)
+     * afgani (Afganistan), waluta archiwalna zastąpiona przez New Afghani (AFN)
      */
     AFA,
     /**

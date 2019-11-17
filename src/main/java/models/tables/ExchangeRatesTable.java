@@ -57,16 +57,4 @@ public class ExchangeRatesTable {
     public List<RateTables> getRates() {
         return rates;
     }
-
-    //TODO usunąć
-
-    @Override
-    public String toString() {
-        return "ExchangeRatesTable{" +
-                "table='" + table + '\'' +
-                ", no='" + no + '\'' +
-                ", effectiveDate='" + effectiveDate + '\'' +
-                ", rates=" + rates +
-                '}';
-    }
 }

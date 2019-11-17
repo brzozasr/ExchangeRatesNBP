@@ -1,6 +1,6 @@
 package http;
 
-import enumtypes.CurrencyCodeTableA;
+import enumtypes.CurrencyCodeTableB;
 import exceptions.NBPDataException;
 import models.rates.ExchangeRatesSeries;
 import models.tables.ArrayOfExchangeRatesTable;
@@ -119,17 +119,17 @@ public class TableB {
         }
         return null;
     }
-    //TODO dół
+
     /**
-     * Aktualnie obowiązujący kurs waluty {currencyCodeTableA} z tabeli kursów typu A
+     * Aktualnie obowiązujący kurs waluty {currencyCodeTableB} z tabeli kursów typu B
      *
-     * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
+     * @param currencyCodeTableB enum CurrencyCodeTableB (np. UAH, SCR, ILS)
      * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
-    public ExchangeRatesSeries currentExchangeRate(CurrencyCodeTableA currencyCodeTableA) throws IOException {
-        String code = currencyCodeTableA.toString().toLowerCase();
-        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/?format=json";
+    public ExchangeRatesSeries currentExchangeRate(CurrencyCodeTableB currencyCodeTableB) throws IOException {
+        String code = currencyCodeTableB.toString().toLowerCase();
+        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/b/" + code + "/?format=json";
         try {
             return readExchangeRatesSeries(jsonUrl);
         } catch (NBPDataException e) {
@@ -139,17 +139,17 @@ public class TableB {
     }
 
     /**
-     * Seria ostatnich {topCount} kursów waluty {currencyCodeTableA} z tabeli kursów typu A
+     * Seria ostatnich {topCount} kursów waluty {currencyCodeTableB} z tabeli kursów typu B
      *
-     * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
+     * @param currencyCodeTableB enum CurrencyCodeTableB (np. UAH, SCR, ILS)
      * @param topCount           liczba określająca maksymalną liczność zwracanej serii danych
      *                           (limit wyników 255)
      * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
-    public ExchangeRatesSeries lastTopCountExchangeRate(CurrencyCodeTableA currencyCodeTableA, int topCount) throws IOException {
-        String code = currencyCodeTableA.toString().toLowerCase();
-        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/last/" + topCount + "/?format=json";
+    public ExchangeRatesSeries lastTopCountExchangeRate(CurrencyCodeTableB currencyCodeTableB, int topCount) throws IOException {
+        String code = currencyCodeTableB.toString().toLowerCase();
+        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/b/" + code + "/last/" + topCount + "/?format=json";
         try {
             return readExchangeRatesSeries(jsonUrl);
         } catch (NBPDataException e) {
@@ -158,18 +158,18 @@ public class TableB {
         return null;
     }
 
-
     /**
-     * Kurs waluty {currencyCodeTableA} z tabeli kursów typu A opublikowany w dniu dzisiejszym (albo brak danych).
-     * Tabela A kursów średnich walut obcych aktualizowana jest w każdy dzień roboczy, między godziną 11:45 a 12:15.
+     * Kurs waluty {currencyCodeTableB} z tabeli kursów typu B opublikowany w dniu dzisiejszym (albo brak danych).<br>
+     * Tabela B kursów średnich walut obcych aktualizowana jest w każdą środę (jeżeli środa jest
+     * dniem wolnym od pracy, aktualizacja odbywa się poprzedniego dnia), między godziną 11:45 a 12:15.
      *
-     * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
+     * @param currencyCodeTableB enum CurrencyCodeTableB (np. UAH, SCR, ILS)
      * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
-    public ExchangeRatesSeries publishedTodayExchangeRate(CurrencyCodeTableA currencyCodeTableA) throws IOException {
-        String code = currencyCodeTableA.toString().toLowerCase();
-        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/today/?format=json";
+    public ExchangeRatesSeries publishedTodayExchangeRate(CurrencyCodeTableB currencyCodeTableB) throws IOException {
+        String code = currencyCodeTableB.toString().toLowerCase();
+        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/b/" + code + "/today/?format=json";
         try {
             return readExchangeRatesSeries(jsonUrl);
         } catch (NBPDataException e) {
@@ -179,19 +179,21 @@ public class TableB {
     }
 
     /**
-     * Kurs waluty {currencyCodeTableA} z tabeli kursów typu A opublikowany w dniu {date} (albo brak danych).
+     * Kurs waluty {currencyCodeTableB} z tabeli kursów typu B opublikowany w dniu {date} (albo brak danych).<br>
+     * Tabela B kursów średnich walut obcych aktualizowana jest w każdą środę (jeżeli środa jest
+     * dniem wolnym od pracy, aktualizacja odbywa się poprzedniego dnia), między godziną 11:45 a 12:15.<br>
      * Dane archiwalne dostępne są dla kursów walut – od 2 stycznia 2002 r.
      *
-     * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
-     * @param date               LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
+     * @param currencyCodeTableB enum CurrencyCodeTableB (np. UAH, SCR, ILS)
+     * @param date               LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 1, 1)
      * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
-    public ExchangeRatesSeries publishedOnDateExchangeRate(CurrencyCodeTableA currencyCodeTableA, LocalDate date) throws IOException {
-        String code = currencyCodeTableA.toString().toLowerCase();
+    public ExchangeRatesSeries publishedOnDateExchangeRate(CurrencyCodeTableB currencyCodeTableB, LocalDate date) throws IOException {
+        String code = currencyCodeTableB.toString().toLowerCase();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formatDate = dateTimeFormatter.format(date);
-        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/" + formatDate + "/?format=json";
+        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/b/" + code + "/" + formatDate + "/?format=json";
         try {
             return readExchangeRatesSeries(jsonUrl);
         } catch (NBPDataException | UnsupportedEncodingException e) {
@@ -200,24 +202,23 @@ public class TableB {
         return null;
     }
 
-
     /**
-     * Seria kursów waluty {currencyCodeTableA} z tabeli kursów typu A opublikowanych w zakresie dat od {startDate}
+     * Seria kursów waluty {currencyCodeTableB} z tabeli kursów typu B opublikowanych w zakresie dat od {startDate}
      * do {endDate} (albo brak danych), limit dni 367.
      * Dane archiwalne dostępne są dla kursów walut – od 2 stycznia 2002 r.
      *
-     * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
-     * @param startDate          LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
-     * @param endDate            LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
+     * @param currencyCodeTableB enum CurrencyCodeTableB (np. UAH, SCR, ILS)
+     * @param startDate          LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 1, 1)
+     * @param endDate            LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 1, 1)
      * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
-    public ExchangeRatesSeries publishedOnDateRangeExchangeRate(CurrencyCodeTableA currencyCodeTableA, LocalDate startDate, LocalDate endDate) throws IOException {
-        String code = currencyCodeTableA.toString().toLowerCase();
+    public ExchangeRatesSeries publishedOnDateRangeExchangeRate(CurrencyCodeTableB currencyCodeTableB, LocalDate startDate, LocalDate endDate) throws IOException {
+        String code = currencyCodeTableB.toString().toLowerCase();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String startFormatDate = dateTimeFormatter.format(startDate);
         String endFormatDate = dateTimeFormatter.format(endDate);
-        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/" + startFormatDate + "/" + endFormatDate + "/?format=json";
+        String jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/b/" + code + "/" + startFormatDate + "/" + endFormatDate + "/?format=json";
         try {
             return readExchangeRatesSeries(jsonUrl);
         } catch (NBPDataException | UnsupportedEncodingException e) {
@@ -227,16 +228,16 @@ public class TableB {
     }
 
     /**
-     * Seria wszystkich kursów waluty {currencyCodeTableA} z tabeli kursów typu A.
+     * Seria wszystkich kursów waluty {currencyCodeTableB} z tabeli kursów typu B.
      * Dane są dostępnych od 2 stycznia 2002 r. do bieżącej daty.<br>
      * Archiwalne dane dla kursów walut dostępne są od 2 stycznia 2002 r.
      *
-     * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
+     * @param currencyCodeTableB enum CurrencyCodeTableB (np. UAH, SCR, ILS)
      * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
-    public ExchangeRatesSeries currencyExchangeRate(CurrencyCodeTableA currencyCodeTableA) throws IOException {
-        String code = currencyCodeTableA.toString().toLowerCase();
+    public ExchangeRatesSeries currencyExchangeRate(CurrencyCodeTableB currencyCodeTableB) throws IOException {
+        String code = currencyCodeTableB.toString().toLowerCase();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate startDate = LocalDate.of(2002, 1, 2);
         LocalDate endDate = LocalDate.now();
@@ -253,7 +254,7 @@ public class TableB {
         for (int i = 0; i < counter; i++) {
             String startFormatDate = dateTimeFormatter.format(startDateUrl);
             String endFormatDate = dateTimeFormatter.format(endDateUrl);
-            jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/" + code + "/" + startFormatDate + "/" + endFormatDate + "/?format=json";
+            jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/b/" + code + "/" + startFormatDate + "/" + endFormatDate + "/?format=json";
             startDateUrl = startDateUrl.plusDays(368);
             if (i < counter - 2) {
                 endDateUrl = startDateUrl.plusDays(367);

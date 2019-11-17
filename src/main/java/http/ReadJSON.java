@@ -29,17 +29,24 @@ class ReadJSON {
 
         String json = readJsonToString(jsonUrl);
 
-        if (json.contains("country")) {
-            json = json.replaceAll("country", "currency");
-        }
-
         if (json.startsWith("Response code:")) {
             throw new NBPDataException(json);
         } else {
             JSONObject jsonObject = new JSONObject(json);
 
             String table = jsonObject.getString("table");
-            String currency = jsonObject.getString("currency");
+            String country = null;
+            if (jsonObject.has("country")) {
+                country = jsonObject.getString("country");
+            }
+            String symbol = null;
+            if (jsonObject.has("symbol")) {
+                symbol = jsonObject.getString("symbol");
+            }
+            String currency = null;
+            if (jsonObject.has("currency")) {
+                currency = jsonObject.getString("currency");
+            }
             String code = jsonObject.getString("code");
             JSONArray rates = jsonObject.getJSONArray("rates");
 
@@ -52,7 +59,7 @@ class ReadJSON {
                 rateArrayList.add(new Rate(no, effectiveDate, mid));
             }
 
-            return new ExchangeRatesSeries(table, currency, code, rateArrayList);
+            return new ExchangeRatesSeries(table, country, symbol, currency, code, rateArrayList);
         }
     }
 
@@ -113,15 +120,15 @@ class ReadJSON {
                 JSONArray arrayRatesTables = arrayOfExchangeRatesTable.getJSONObject(i).getJSONArray("rates");
                 for (int j = 0; j < arrayRatesTables.length(); j++) {
                     String country = null;
-                    if(arrayRatesTables.getJSONObject(j).has("country")) {
+                    if (arrayRatesTables.getJSONObject(j).has("country")) {
                         country = arrayRatesTables.getJSONObject(j).getString("country");
                     }
                     String symbol = null;
-                    if(arrayRatesTables.getJSONObject(j).has("symbol")) {
+                    if (arrayRatesTables.getJSONObject(j).has("symbol")) {
                         symbol = arrayRatesTables.getJSONObject(j).getString("symbol");
                     }
                     String currency = null;
-                    if(arrayRatesTables.getJSONObject(j).has("currency")) {
+                    if (arrayRatesTables.getJSONObject(j).has("currency")) {
                         currency = arrayRatesTables.getJSONObject(j).getString("currency");
                     }
                     String code = arrayRatesTables.getJSONObject(j).getString("code");

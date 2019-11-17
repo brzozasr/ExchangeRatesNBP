@@ -65,15 +65,4 @@ public class RateTables {
     public double getMid() {
         return mid;
     }
-
-    //TODO usunąć
-
-    @Override
-    public String toString() {
-        return "RateTables{" +
-                "currency='" + currency + '\'' +
-                ", code='" + code + '\'' +
-                ", mid=" + mid +
-                '}';
-    }
 }
