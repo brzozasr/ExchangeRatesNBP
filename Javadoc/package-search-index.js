@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"enumtypes"},{"l":"exceptions"},{"l":"http"},{"l":"main"},{"l":"models.rates"},{"l":"models.tables"}]

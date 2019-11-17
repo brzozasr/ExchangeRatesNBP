@@ -5,18 +5,42 @@ package models.tables;
  * {ExchangeRatesTable-&#62;ArrayOfExchangeRatesTable} dla określonego typu tabeli.
  */
 public class RateTables {
+    private String country;
+    private String symbol;
     private String currency;
     private String code;
     private double mid;
 
-    public RateTables(String currency, String effectiveDate, double mid) {
+    public RateTables(String country, String symbol, String currency, String code, double mid) {
+        this.country = country;
+        this.symbol = symbol;
         this.currency = currency;
-        this.code = effectiveDate;
+        this.code = code;
         this.mid = mid;
     }
 
     /**
-     * Pobiera nazwę waluty z z obiektu ArrayOfExchangeRatesTable
+     * Pobiera nazwę kraju z obiektu ArrayOfExchangeRatesTable
+     * (dotyczy kursów archiwalnych)
+     *
+     * @return nazwa kraju (np. Australia, Afganistan)
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * Pobiera symbol waluty (numeryczny) z obiektu ArrayOfExchangeRatesTable
+     * (dotyczy kursów archiwalnych)
+     *
+     * @return numeryczny symbol waluty (np. 781, 662)
+     */
+    public String getSymbol() {
+        return symbol;
+    }
+
+    /**
+     * Pobiera nazwę waluty z obiektu ArrayOfExchangeRatesTable
      *
      * @return nazwę waluty (np. "dolar amerykański" lub z tabel archiwalnych "USA")
      */

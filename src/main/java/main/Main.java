@@ -2,60 +2,17 @@ package main;
 
 import enumtypes.CurrencyCodeTableA;
 import http.TableA;
+import http.TableB;
 import models.rates.ExchangeRatesSeries;
+import models.tables.ArrayOfExchangeRatesTable;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class Main {
 
     static public void main(String[] args) {
-
-//        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//        LocalDate startDate = LocalDate.of(2002, 1, 2);
-//        LocalDate endDate = LocalDate.now();
-//        String jsonUrl = "";
-//        String json = "";
-//        String jsonTrim = "";
-//
-//        long days = ChronoUnit.DAYS.between(startDate, endDate);
-//        int counter = (int) Math.ceil((double) days / 367);
-//
-//        LocalDate startDateUrl = startDate;
-//        LocalDate endDateUrl = startDateUrl.plusDays(367);
-//
-//        for (int i = 0; i < counter; i++) {
-//            String startFormatDate = dateTimeFormatter.format(startDateUrl);
-//            String endFormatDate = dateTimeFormatter.format(endDateUrl);
-//            jsonUrl = "http://api.nbp.pl/api/exchangerates/rates/a/usd/" + startFormatDate + "/" + endFormatDate + "/?format=json";
-//            startDateUrl = startDateUrl.plusDays(368);
-//            if (i < counter - 2) {
-//                endDateUrl = startDateUrl.plusDays(367);
-//            } else {
-//                endDateUrl = LocalDate.now();
-//            }
-//
-//            try {
-//                json = readJsonToString(jsonUrl);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            if(!json.startsWith("Response code:")) {
-//                int firstIndex = json.indexOf(":[");
-//                int lastIndex = json.indexOf("]}");
-//                json = json.substring(firstIndex + 2, lastIndex);
-//                jsonTrim = jsonTrim.concat(json).concat(",");
-//            }
-//        }
-//
-//        if (jsonTrim.endsWith(",")) {
-//            jsonTrim = jsonTrim.substring(0, jsonTrim.length() - 1);
-//        }
-//
-//        jsonTrim = "{\"rates\":[" + jsonTrim + "]}";
-//
-//        System.out.println(jsonTrim.length());
-//        System.out.println(jsonTrim);
+/*
 
         try {
             ExchangeRatesSeries exchangeRatesSeries = new TableA().currencyExchangeRate(CurrencyCodeTableA.USD);
@@ -67,6 +24,42 @@ public class Main {
                 " <-> " + exchangeRatesSeries.getRates().get(i).getMid());
             }
             //System.out.println(exchangeRatesSeries);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+*/
+
+        try {
+            ArrayOfExchangeRatesTable arrayOfExchangeRatesTable = new TableA().publishedOnDateRangeTables(LocalDate.of(2002, 1, 2),
+                    LocalDate.of(2002, 04, 5));
+            for(int i = 0; i < arrayOfExchangeRatesTable.getExchangeRatesTables().size(); i++) {
+                System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(i).getTable());
+                System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(i).getNo());
+                System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(i).getEffectiveDate());
+                for (int j = 0; j < arrayOfExchangeRatesTable.getExchangeRatesTables().get(i).getRates().size(); j++) {
+                    System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(i).getRates().get(j).getCountry());
+                    System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(i).getRates().get(j).getSymbol());
+                    System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(i).getRates().get(j).getCurrency());
+                    System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(i).getRates().get(j).getCode());
+                    System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(i).getRates().get(j).getMid());
+                }
+            }
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getTable());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getNo());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getEffectiveDate());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(0).getCurrency());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(0).getCountry());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(0).getCode());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(0).getMid());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(1).getCurrency());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(1).getCountry());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(1).getCode());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(1).getMid());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(2).getCurrency());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(2).getCountry());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(2).getCode());
+//            System.out.println(arrayOfExchangeRatesTable.getExchangeRatesTables().get(0).getRates().get(2).getMid());
+//            System.out.println(arrayOfExchangeRatesTable);
         } catch (IOException e) {
             e.printStackTrace();
         }

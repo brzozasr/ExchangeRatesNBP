@@ -98,10 +98,6 @@ class ReadJSON {
 
         String json = readJsonToString(jsonUrl);
 
-        if (json.contains("country")) {
-            json = json.replaceAll("country", "currency");
-        }
-
         if (json.startsWith("Response code:")) {
             throw new NBPDataException(json);
         } else {
@@ -116,10 +112,21 @@ class ReadJSON {
                 String effectiveDate = arrayOfExchangeRatesTable.getJSONObject(i).getString("effectiveDate");
                 JSONArray arrayRatesTables = arrayOfExchangeRatesTable.getJSONObject(i).getJSONArray("rates");
                 for (int j = 0; j < arrayRatesTables.length(); j++) {
-                    String currency = arrayRatesTables.getJSONObject(j).getString("currency");
+                    String country = null;
+                    if(arrayRatesTables.getJSONObject(j).has("country")) {
+                        country = arrayRatesTables.getJSONObject(j).getString("country");
+                    }
+                    String symbol = null;
+                    if(arrayRatesTables.getJSONObject(j).has("symbol")) {
+                        symbol = arrayRatesTables.getJSONObject(j).getString("symbol");
+                    }
+                    String currency = null;
+                    if(arrayRatesTables.getJSONObject(j).has("currency")) {
+                        currency = arrayRatesTables.getJSONObject(j).getString("currency");
+                    }
                     String code = arrayRatesTables.getJSONObject(j).getString("code");
                     double mid = arrayRatesTables.getJSONObject(j).getDouble("mid");
-                    listRateTables.add(new RateTables(currency, code, mid));
+                    listRateTables.add(new RateTables(country, symbol, currency, code, mid));
                 }
                 listExchangeRatesTables.add(new ExchangeRatesTable(table, no, effectiveDate, listRateTables));
             }

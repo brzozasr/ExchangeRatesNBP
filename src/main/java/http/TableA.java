@@ -82,7 +82,7 @@ public class TableA {
      * Tabela kursów typu A opublikowana w dniu {date} (albo brak danych).
      * Dane archiwalne dostępne są dla kursów walut – od 2 stycznia 2002 r.
      *
-     * @param date LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
+     * @param date LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 1, 1)
      * @return obiekt ArrayOfExchangeRatesTable
      * @throws IOException input / output exception (wyjątek)
      */
@@ -102,8 +102,8 @@ public class TableA {
      * Seria tabel kursów typu A opublikowanych w zakresie dat od {startDate} do {endDate} (albo brak danych),
      * (limit dni 93). Dane archiwalne dostępne są dla kursów walut – od 2 stycznia 2002 r.
      *
-     * @param startDate LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
-     * @param endDate   LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
+     * @param startDate LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 1, 1)
+     * @param endDate   LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 1, 1)
      * @return obiekt ArrayOfExchangeRatesTable
      * @throws IOException input / output exception (wyjątek)
      */
@@ -183,7 +183,7 @@ public class TableA {
      * Dane archiwalne dostępne są dla kursów walut – od 2 stycznia 2002 r.
      *
      * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
-     * @param date               LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
+     * @param date               LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 1, 1)
      * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
@@ -207,8 +207,8 @@ public class TableA {
      * Dane archiwalne dostępne są dla kursów walut – od 2 stycznia 2002 r.
      *
      * @param currencyCodeTableA enum CurrencyCodeTableA (np. usd, gbp, chf)
-     * @param startDate          LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
-     * @param endDate            LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 01, 01)
+     * @param startDate          LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 1, 1)
+     * @param endDate            LocalDate, data w formacie rrrr-MM-dd (standard ISO 8601), np. LocalDate.of(2010, 1, 1)
      * @return obiekt ExchangeRatesSeries
      * @throws IOException input / output exception (wyjątek)
      */
