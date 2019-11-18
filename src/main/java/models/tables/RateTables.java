@@ -42,7 +42,7 @@ public class RateTables {
     /**
      * Pobiera nazwę waluty z obiektu ArrayOfExchangeRatesTable
      *
-     * @return nazwę waluty (np. "dolar amerykański" lub z tabel archiwalnych "USA")
+     * @return nazwę waluty (np. "dolar amerykański")
      */
     public String getCurrency() {
         return currency;

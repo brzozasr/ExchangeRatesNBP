@@ -50,7 +50,9 @@ public class ExchangeRatesTable {
      * Pobiera listę kursów poszczególnych walut w tabeli z obiektu ArrayOfExchangeRatesTable
      *
      * @return listę kursów poszczególnych walut w tabeli {List&#60;RateTables&#62;}:<br>
-     * currency - nazwa waluty (np. "dolar amerykański" lub z tabel archiwalnych "USA")<br>
+     * country - nazwa kraju<br>
+     * symbol - symbol waluty (numeryczny, dotyczy kursów archiwalnych)<br>
+     * currency - nazwa waluty (np. "dolar amerykański")<br>
      * code - kod waluty (np. "USD", "EUR")<br>
      * mid - przeliczony kurs średni waluty (np. "3.2735")
      */

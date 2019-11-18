@@ -20,7 +20,7 @@ public class ArrayOfExchangeRatesTable {
      * table - typ tabeli<br>
      * no – numer tabeli<br>
      * effectiveDate – data publikacji<br>
-     * rates – lista {List&#60;RateTables&#62;} kursu średniego walut
+     * rates – lista {List&#60;RateTables&#62;} kursów średnich walut
      */
     public List<ExchangeRatesTable> getExchangeRatesTables() {
         return exchangeRatesTables;
