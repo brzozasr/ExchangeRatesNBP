@@ -3,5 +3,6 @@ exceptions
 http
 main
 models.rates
+models.ratesc
 models.tablec
 models.tables

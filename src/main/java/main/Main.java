@@ -1,8 +1,11 @@
 package main;
 
+import enumtypes.CurrencyCodeTableC;
 import http.TableA;
 import http.TableC;
+import models.ratesc.ExchangeRatesSeriesC;
 import models.tablec.ArrayOfExchangeRatesTableC;
+import models.tablec.ExchangeRatesTableC;
 import models.tables.ArrayOfExchangeRatesTable;
 
 import java.io.IOException;
@@ -11,17 +14,30 @@ import java.time.LocalDate;
 public class Main {
 
     static public void main(String[] args) {
-/*
+
         try {
-            ArrayOfExchangeRatesTableC arrayOfExchangeRatesTableC = new TableC().publishedOnDateRangeTables(LocalDate.of(2017, 1, 4),
-                    LocalDate.of(2017, 2, 10));
-            System.out.println(arrayOfExchangeRatesTableC.getExchangeRatesTables().size());
+            ExchangeRatesSeriesC exchangeRatesTableC = new TableC().currencyExchangeRate(CurrencyCodeTableC.EUR);
+            System.out.println(exchangeRatesTableC.getTable());
+            System.out.println(exchangeRatesTableC.getCountry());
+            System.out.println(exchangeRatesTableC.getSymbol());
+            System.out.println(exchangeRatesTableC.getCurrency());
+            System.out.println(exchangeRatesTableC.getCode());
+            for (int i = 0; i < exchangeRatesTableC.getRates().size(); i++) {
+                System.out.println(exchangeRatesTableC.getRates().get(i).getNo() + " <-> " + exchangeRatesTableC.getRates().get(i).getEffectiveDate() +
+                        " <-> " + exchangeRatesTableC.getRates().get(i).getBid() + " <-> " + exchangeRatesTableC.getRates().get(i).getAsk());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        /*try {
+            ArrayOfExchangeRatesTableC arrayOfExchangeRatesTableC = new TableC().publishedOnDateRangeTables(LocalDate.of(2002, 1, 4),
+                    LocalDate.of(2002, 3, 10));
             for (int i = 0; i < arrayOfExchangeRatesTableC.getExchangeRatesTables().size(); i++) {
                 System.out.println(arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getTable());
                 System.out.println(arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getNo());
                 System.out.println(arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getTradingDate());
                 System.out.println(arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getEffectiveDate());
-                System.out.println("i = " + i);
                 for (int j = 0; j < arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().size(); j++) {
                     System.out.println(arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
                             arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +
@@ -29,13 +45,11 @@ public class Main {
                             arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
                             arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().get(j).getBid() + " - " +
                             arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().get(j).getAsk());
-                    System.out.println("j = " + j);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        */
+        }*/
 /*
         try {
             ExchangeRatesSeries exchangeRatesSeries = new TableA().currencyExchangeRate(CurrencyCodeTableA.GBP);
@@ -52,7 +66,7 @@ public class Main {
             e.printStackTrace();
         }
 */
-
+/*
         try {
             ArrayOfExchangeRatesTable arrayOfExchangeRatesTable = new TableA().lastTopCountTables(30);
 
@@ -70,7 +84,7 @@ public class Main {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
        /* try {
             ExchangeRatesSeries exchangeRatesSeries = new TableA().publishedOnDateRangeExchangeRate(CurrencyCodeTableA.USD,

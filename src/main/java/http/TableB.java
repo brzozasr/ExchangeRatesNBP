@@ -204,7 +204,7 @@ public class TableB {
 
     /**
      * Seria kursów waluty {currencyCodeTableB} z tabeli kursów typu B opublikowanych w zakresie dat od {startDate}
-     * do {endDate} (albo brak danych), limit dni 367.
+     * do {endDate} (albo brak danych), limit dni 367.<br>
      * Dane archiwalne dostępne są dla kursów walut – od 2 stycznia 2002 r.
      *
      * @param currencyCodeTableB enum CurrencyCodeTableB (np. UAH, SCR, ILS)
@@ -228,8 +228,8 @@ public class TableB {
     }
 
     /**
-     * Seria wszystkich kursów waluty {currencyCodeTableB} z tabeli kursów typu B.
-     * Dane są dostępnych od 2 stycznia 2002 r. do bieżącej daty.<br>
+     * Seria kursów waluty {currencyCodeTableB} z tabeli kursów typu B
+     * od 2 stycznia 2002 r. do bieżącej daty.<br>
      * Archiwalne dane dla kursów walut dostępne są od 2 stycznia 2002 r.
      *
      * @param currencyCodeTableB enum CurrencyCodeTableB (np. UAH, SCR, ILS)

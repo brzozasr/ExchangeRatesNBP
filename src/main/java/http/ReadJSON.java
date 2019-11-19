@@ -3,6 +3,8 @@ package http;
 import exceptions.NBPDataException;
 import models.rates.ExchangeRatesSeries;
 import models.rates.Rate;
+import models.ratesc.ExchangeRatesSeriesC;
+import models.ratesc.RateC;
 import models.tablec.ArrayOfExchangeRatesTableC;
 import models.tablec.ExchangeRatesTableC;
 import models.tablec.RateTablesC;
@@ -66,6 +68,52 @@ class ReadJSON {
     }
 
     /**
+     * Metoda odczytuje dane z linka {jsonUrl} i dodaje je do obiektu {ExchangeRatesSeriesC}
+     *
+     * @param jsonUrl link (url), z którego pobierane są dane w formie JSON
+     * @return obiekt {ExchangeRatesSeriesC}
+     * @throws IOException      input / output exception (wyjątek)
+     * @throws NBPDataException wyjątek zwracany przez stronę NBP
+     */
+    static ExchangeRatesSeriesC readExchangeRatesSeriesC(String jsonUrl) throws IOException, NBPDataException {
+
+        String json = readJsonToString(jsonUrl);
+
+        if (json.startsWith("Response code:")) {
+            throw new NBPDataException(json);
+        } else {
+            JSONObject jsonObject = new JSONObject(json);
+
+            String table = jsonObject.getString("table");
+            String country = null;
+            if (jsonObject.has("country")) {
+                country = jsonObject.getString("country");
+            }
+            String symbol = null;
+            if (jsonObject.has("symbol")) {
+                symbol = jsonObject.getString("symbol");
+            }
+            String currency = null;
+            if (jsonObject.has("currency")) {
+                currency = jsonObject.getString("currency");
+            }
+            String code = jsonObject.getString("code");
+            JSONArray rates = jsonObject.getJSONArray("rates");
+
+            List<RateC> rateArrayList = new ArrayList<>();
+
+            for (int i = 0; i < rates.length(); i++) {
+                String no = rates.getJSONObject(i).getString("no");
+                String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
+                double bid = rates.getJSONObject(i).getDouble("bid");
+                double ask = rates.getJSONObject(i).getDouble("ask");
+                rateArrayList.add(new RateC(no, effectiveDate, bid, ask));
+            }
+            return new ExchangeRatesSeriesC(table, country, symbol, currency, code, rateArrayList);
+        }
+    }
+
+    /**
      * Metoda odczytuje dane z formatu JSON {json} i dodaje je do obiektu {ExchangeRatesSeries}
      *
      * @param json dane w formacie JSON
@@ -91,6 +139,36 @@ class ReadJSON {
                 rateArrayList.add(new Rate(no, effectiveDate, mid));
             }
             return new ExchangeRatesSeries(rateArrayList);
+        }
+    }
+
+    /**
+     * Metoda odczytuje dane z formatu JSON {json} i dodaje je do obiektu {ExchangeRatesSeriesC}
+     *
+     * @param json dane w formacie JSON
+     * @return obiekt {ExchangeRatesSeriesC}
+     * @throws IOException      input / output exception (wyjątek)
+     * @throws NBPDataException wyjątek zwracany przez stronę NBP
+     */
+    static ExchangeRatesSeriesC readMultiExchangeRatesSeriesC(String json) throws IOException, NBPDataException {
+
+        if (json.equals("")) {
+            throw new NBPDataException("Response code: 404 - Not Found - Brak danych");
+        } else {
+            JSONObject jsonObject = new JSONObject(json);
+
+            JSONArray rates = jsonObject.getJSONArray("rates");
+
+            List<RateC> rateArrayList = new ArrayList<>();
+
+            for (int i = 0; i < rates.length(); i++) {
+                String no = rates.getJSONObject(i).getString("no");
+                String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
+                double bid = rates.getJSONObject(i).getDouble("bid");
+                double ask = rates.getJSONObject(i).getDouble("ask");
+                rateArrayList.add(new RateC(no, effectiveDate, bid, ask));
+            }
+            return new ExchangeRatesSeriesC(rateArrayList);
         }
     }
 
