@@ -65,4 +65,15 @@ public class RateTables {
     public double getMid() {
         return mid;
     }
+
+    @Override
+    public String toString() {
+        return "RateTables{" +
+                "country='" + country + '\'' +
+                ", symbol='" + symbol + '\'' +
+                ", currency='" + currency + '\'' +
+                ", code='" + code + '\'' +
+                ", mid=" + mid +
+                "}\n";
+    }
 }

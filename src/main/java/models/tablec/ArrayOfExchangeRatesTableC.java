@@ -7,10 +7,10 @@ import java.util.List;
  */
 public class ArrayOfExchangeRatesTableC {
 
-    private List<ExchangeRatesTableC> exchangeRatesTablesC;
+    private List<ExchangeRatesTableC> exchangeRatesTables;
 
     public ArrayOfExchangeRatesTableC(List<ExchangeRatesTableC> exchangeRatesTablesC) {
-        this.exchangeRatesTablesC = exchangeRatesTablesC;
+        this.exchangeRatesTables = exchangeRatesTablesC;
     }
 
     /**
@@ -23,7 +23,7 @@ public class ArrayOfExchangeRatesTableC {
      * effectiveDate – data publikacji<br>
      * rates – lista {List&#60;RateTablesC&#62;} kursów kupna i sprzedaży walut
      */
-    public List<ExchangeRatesTableC> getExchangeRatesTablesC() {
-        return exchangeRatesTablesC;
+    public List<ExchangeRatesTableC> getExchangeRatesTables() {
+        return exchangeRatesTables;
     }
 }
