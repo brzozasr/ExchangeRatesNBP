@@ -2,6 +2,7 @@ enumtypes
 exceptions
 http
 main
+models.gold
 models.rates
 models.ratesc
 models.tablec

@@ -9,6 +9,10 @@ public class ArrayOfExchangeRatesTableC {
 
     private List<ExchangeRatesTableC> exchangeRatesTables;
 
+    /**
+     * Konstruktor obiektu ArrayOfExchangeRatesTableC
+     * @param exchangeRatesTablesC lista tabel kursów walut typu C {List&#60;ExchangeRatesTableC&#62;}
+     */
     public ArrayOfExchangeRatesTableC(List<ExchangeRatesTableC> exchangeRatesTablesC) {
         this.exchangeRatesTables = exchangeRatesTablesC;
     }
