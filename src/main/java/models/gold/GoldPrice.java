@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class GoldPrice {
 
     private LocalDate date;
-    private int price;
+    private double price;
 
     /**
      * Konstruktor obiektu GoldPrice
@@ -16,7 +16,7 @@ public class GoldPrice {
      * @param data  data publikacji
      * @param price cena wyliczona w NBP cena 1 g złota (w próbie 1000)
      */
-    public GoldPrice(LocalDate data, int price) {
+    public GoldPrice(LocalDate data, double price) {
         this.date = data;
         this.price = price;
     }
@@ -35,7 +35,7 @@ public class GoldPrice {
      *
      * @return cenę notowania złota
      */
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 }

@@ -1,6 +1,8 @@
 package http;
 
 import exceptions.NBPDataException;
+import models.gold.ArrayOfGoldPrice;
+import models.gold.GoldPrice;
 import models.rates.ExchangeRatesSeries;
 import models.rates.Rate;
 import models.ratesc.ExchangeRatesSeriesC;
@@ -15,6 +17,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -269,6 +273,35 @@ class ReadJSON {
                 listExchangeRatesTablesC.add(new ExchangeRatesTableC(table, no, tradingDate, effectiveDate, listRateTablesC));
             }
             return new ArrayOfExchangeRatesTableC(listExchangeRatesTablesC);
+        }
+    }
+
+    /**
+     * Metoda odczytuje dane z linka {jsonUrl} i dodaje je do obiektu {ArrayOfGoldPrice}
+     *
+     * @param jsonUrl link (url), z którego pobierane są dane w formie JSON
+     * @return obiekt {ArrayOfGoldPrice}
+     * @throws IOException      input / output exception (wyjątek)
+     * @throws NBPDataException wyjątek zwracany przez stronę NBP
+     */
+    static ArrayOfGoldPrice readGoldPriceSeries(String jsonUrl) throws IOException, NBPDataException {
+
+        String json = readJsonToString(jsonUrl);
+
+        if (json.startsWith("Response code:")) {
+            throw new NBPDataException(json);
+        } else {
+            JSONArray jsonArray = new JSONArray(json);
+
+            List<GoldPrice> goldPrices = new ArrayList<>();
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                String date = jsonArray.getJSONObject(i).getString("data");
+                double price = jsonArray.getJSONObject(i).getDouble("cena");
+                LocalDate formatDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                goldPrices.add(new GoldPrice(formatDate, price));
+            }
+            return new ArrayOfGoldPrice(goldPrices);
         }
     }
 }

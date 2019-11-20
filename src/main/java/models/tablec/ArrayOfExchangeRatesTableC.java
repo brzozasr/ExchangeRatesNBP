@@ -11,6 +11,7 @@ public class ArrayOfExchangeRatesTableC {
 
     /**
      * Konstruktor obiektu ArrayOfExchangeRatesTableC
+     *
      * @param exchangeRatesTablesC lista tabel kursów walut typu C {List&#60;ExchangeRatesTableC&#62;}
      */
     public ArrayOfExchangeRatesTableC(List<ExchangeRatesTableC> exchangeRatesTablesC) {

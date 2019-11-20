@@ -1,8 +1,11 @@
 package main;
 
 import enumtypes.CurrencyCodeTableC;
+import http.Gold;
 import http.TableA;
 import http.TableC;
+import models.gold.ArrayOfGoldPrice;
+import models.gold.GoldPrice;
 import models.ratesc.ExchangeRatesSeriesC;
 import models.tablec.ArrayOfExchangeRatesTableC;
 import models.tablec.ExchangeRatesTableC;
@@ -16,6 +19,31 @@ public class Main {
     static public void main(String[] args) {
 
         try {
+            ArrayOfGoldPrice arrayOfGoldPrice = new Gold().publishedOnDateRangeGoldPrice(LocalDate.of(2012, 6, 1),
+                    LocalDate.of(2013, 3, 1));
+
+            System.out.println("Example no 1 =======================================================");
+
+            for(int i = 0; i < arrayOfGoldPrice.getGoldQuotations().size(); i++) {
+                System.out.println(arrayOfGoldPrice.getGoldQuotations().get(i).getDate());
+                System.out.println(arrayOfGoldPrice.getGoldQuotations().get(i).getPrice());
+            }
+
+            System.out.println("\nExample no 2 =======================================================");
+            for(GoldPrice element: arrayOfGoldPrice.getGoldQuotations()) {
+                System.out.println(element.getDate());
+                System.out.println(element.getPrice());
+            }
+
+            System.out.println("\nExample no 3 =======================================================");
+            arrayOfGoldPrice.getGoldQuotations().forEach(
+                    element -> System.out.println(element.getDate() + "\n" + element.getPrice()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+       /* try {
             ExchangeRatesSeriesC exchangeRatesTableC = new TableC().currencyExchangeRate(CurrencyCodeTableC.EUR);
             System.out.println(exchangeRatesTableC.getTable());
             System.out.println(exchangeRatesTableC.getCountry());
@@ -28,7 +56,7 @@ public class Main {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
         /*try {
             ArrayOfExchangeRatesTableC arrayOfExchangeRatesTableC = new TableC().publishedOnDateRangeTables(LocalDate.of(2002, 1, 4),
