@@ -14,6 +14,15 @@ public class ExchangeRatesTableC {
     private String effectiveDate;
     private List<RateTablesC> rates;
 
+    /**
+     * Konstruktor obiektu ExchangeRatesTableC
+     *
+     * @param table         typ tabeli
+     * @param no            numer tabeli
+     * @param tradingDate   data notowania (dotyczy tabeli C)
+     * @param effectiveDate data publikacji
+     * @param rates         lista notowań walut {List&#60;RateTablesC&#62;}
+     */
     public ExchangeRatesTableC(String table, String no, String tradingDate, String effectiveDate, List<RateTablesC> rates) {
         this.table = table;
         this.tradingDate = tradingDate;

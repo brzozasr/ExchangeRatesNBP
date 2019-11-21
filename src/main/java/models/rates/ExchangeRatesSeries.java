@@ -3,7 +3,7 @@ package models.rates;
 import java.util.List;
 
 /**
- * Model kursów walut udostępniony jako kurs (lub seria kursów) pojedynczej waluty
+ * Model kursów waluty udostępniony jako kurs (lub seria kursów)
  * dla określonego typu tabeli oraz symbolu waluty.
  */
 public class ExchangeRatesSeries {
@@ -14,6 +14,16 @@ public class ExchangeRatesSeries {
     private String code;
     private List<Rate> rates;
 
+    /**
+     * Konstruktor obiektu ExchangeRatesSeries
+     *
+     * @param table    typ babeli
+     * @param country  nazwa kraju
+     * @param symbol   symbol waluty (numeryczny, dotyczy kursów archiwalnych)
+     * @param currency nazwa waluty
+     * @param code     kod waluty
+     * @param rates    lista tabel notowań waluty {List&#60;Rate&#62;}
+     */
     public ExchangeRatesSeries(String table, String country, String symbol, String currency, String code, List<Rate> rates) {
         this.table = table;
         this.country = country;
@@ -23,6 +33,11 @@ public class ExchangeRatesSeries {
         this.rates = rates;
     }
 
+    /**
+     * Konstruktor obiektu ExchangeRatesSeries
+     *
+     * @param rates lista tabel notowań waluty {List&#60;Rate&#62;}
+     */
     public ExchangeRatesSeries(List<Rate> rates) {
         this.rates = rates;
     }

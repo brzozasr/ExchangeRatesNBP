@@ -16,6 +16,16 @@ public class ExchangeRatesSeriesC {
     private String code;
     private List<RateC> rates;
 
+    /**
+     * Konstruktor obiektu ExchangeRatesSeriesC
+     *
+     * @param table    typ tabeli
+     * @param country  nazwa kraju
+     * @param symbol   symbol waluty (numeryczny, dotyczy kursów archiwalnych)
+     * @param currency nazwa waluty
+     * @param code     kod waluty
+     * @param rates    lista tabel notowań waluty {List&#60;RateC&#62;}
+     */
     public ExchangeRatesSeriesC(String table, String country, String symbol, String currency, String code, List<RateC> rates) {
         this.table = table;
         this.country = country;
@@ -25,6 +35,11 @@ public class ExchangeRatesSeriesC {
         this.rates = rates;
     }
 
+    /**
+     * Konstruktor obiektu ExchangeRatesSeriesC
+     *
+     * @param rates lista tabel notowań waluty {List&#60;RateC&#62;}
+     */
     public ExchangeRatesSeriesC(List<RateC> rates) {
         this.rates = rates;
     }

@@ -19,8 +19,7 @@ public class Main {
     static public void main(String[] args) {
 
         try {
-            ArrayOfGoldPrice arrayOfGoldPrice = new Gold().publishedOnDateRangeGoldPrice(LocalDate.of(2012, 6, 1),
-                    LocalDate.of(2013, 3, 1));
+            ArrayOfGoldPrice arrayOfGoldPrice = new Gold().allGoldPrice();
 
             System.out.println("Example no 1 =======================================================");
 

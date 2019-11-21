@@ -304,4 +304,31 @@ class ReadJSON {
             return new ArrayOfGoldPrice(goldPrices);
         }
     }
+
+    /**
+     * Metoda odczytuje dane z formatu JSON {json} i dodaje je do obiektu {ArrayOfGoldPrice}
+     *
+     * @param json dane w formacie JSON
+     * @return obiekt {ArrayOfGoldPrice}
+     * @throws IOException      input / output exception (wyjątek)
+     * @throws NBPDataException wyjątek zwracany przez stronę NBP
+     */
+    static ArrayOfGoldPrice readMultiGoldPriceSeries(String json) throws IOException, NBPDataException {
+
+        if (json.equals("")) {
+            throw new NBPDataException("Response code: 404 - Not Found - Brak danych");
+        } else {
+            JSONArray jsonArray = new JSONArray(json);
+
+            List<GoldPrice> goldPrices = new ArrayList<>();
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                String date = jsonArray.getJSONObject(i).getString("data");
+                double price = jsonArray.getJSONObject(i).getDouble("cena");
+                LocalDate formatDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                goldPrices.add(new GoldPrice(formatDate, price));
+            }
+            return new ArrayOfGoldPrice(goldPrices);
+        }
+    }
 }

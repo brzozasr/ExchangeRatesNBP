@@ -3,12 +3,17 @@ package models.tables;
 import java.util.List;
 
 /**
- * Model tablicy z kompletymi tabelami kursów walut określonego typu.
+ * Model tablicy z kompletymi tabelami kursów walut określonego typu A i B.
  */
 public class ArrayOfExchangeRatesTable {
 
     private List<ExchangeRatesTable> exchangeRatesTables;
 
+    /**
+     * Konstruktor obiektu ArrayOfExchangeRatesTable
+     *
+     * @param exchangeRatesTables lista tabel kursów walut typu A i B {List&#60;ExchangeRatesTable&#62;}
+     */
     public ArrayOfExchangeRatesTable(List<ExchangeRatesTable> exchangeRatesTables) {
         this.exchangeRatesTables = exchangeRatesTables;
     }

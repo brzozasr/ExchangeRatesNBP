@@ -4,10 +4,14 @@ import exceptions.NBPDataException;
 import models.gold.ArrayOfGoldPrice;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
+import static http.ReadHttpData.readJsonToString;
 import static http.ReadJSON.readGoldPriceSeries;
+import static http.ReadJSON.readMultiGoldPriceSeries;
 
 /**
  * Ceny i notowania złota wyliczona w NBP, cena 1 g złota (w próbie 1000).
@@ -102,6 +106,68 @@ public class Gold {
         try {
             return readGoldPriceSeries(jsonUrl);
         } catch (NBPDataException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Seria wszystkich cen złota, dane są dostępnych od 2 stycznia 2013 r. do bieżącej daty.<br>
+     * Dane archiwalne dla cen złota dostępne są od 2 stycznia 2013 r.
+     *
+     * @return obiekt ExchangeRatesSeries
+     * @throws IOException input / output exception (wyjątek)
+     */
+    public ArrayOfGoldPrice allGoldPrice() throws IOException {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate startDate = LocalDate.of(2013, 1, 2);
+        LocalDate endDate = LocalDate.now();
+        String jsonUrl;
+        String json = "";
+        String jsonTrim = "";
+
+        long days = ChronoUnit.DAYS.between(startDate, endDate);
+        int counter = (int) Math.ceil((double) days / 367);
+
+        LocalDate startDateUrl = startDate;
+        LocalDate endDateUrl = startDateUrl.plusDays(367);
+
+        for (int i = 0; i < counter; i++) {
+            String startFormatDate = dateTimeFormatter.format(startDateUrl);
+            String endFormatDate = dateTimeFormatter.format(endDateUrl);
+            jsonUrl = "http://api.nbp.pl/api/cenyzlota/" + startFormatDate + "/" + endFormatDate + "/?format=json";
+            startDateUrl = startDateUrl.plusDays(368);
+            if (i < counter - 2) {
+                endDateUrl = startDateUrl.plusDays(367);
+            } else {
+                endDateUrl = LocalDate.now();
+            }
+
+            try {
+                json = readJsonToString(jsonUrl);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (!json.startsWith("Response code:")) {
+                int firstIndex = json.indexOf("[");
+                int lastIndex = json.indexOf("]");
+                json = json.substring(firstIndex + 1, lastIndex);
+                jsonTrim = jsonTrim.concat(json).concat(",");
+            }
+        }
+
+        if (jsonTrim.endsWith(",")) {
+            jsonTrim = jsonTrim.substring(0, jsonTrim.length() - 1);
+        }
+
+        if (!jsonTrim.equals("")) {
+            jsonTrim = "[" + jsonTrim + "]";
+        }
+
+        try {
+            return readMultiGoldPriceSeries(jsonTrim);
+        } catch (NBPDataException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         return null;

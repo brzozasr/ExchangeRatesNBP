@@ -13,6 +13,16 @@ public class RateTablesC {
     private double bid;
     private double ask;
 
+    /**
+     * Konstruktor obiektu RateTablesC
+     *
+     * @param country  nazwa kraju
+     * @param symbol   symbol waluty (numeryczny, dotyczy kursów archiwalnych)
+     * @param currency nazwa waluty
+     * @param code     kod waluty
+     * @param bid      przeliczony kurs kupna waluty (dotyczy tabeli C)
+     * @param ask      przeliczony kurs sprzedaży waluty (dotyczy tabeli C)
+     */
     public RateTablesC(String country, String symbol, String currency, String code, double bid, double ask) {
         this.country = country;
         this.symbol = symbol;

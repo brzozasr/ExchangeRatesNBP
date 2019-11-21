@@ -3,6 +3,9 @@ package exceptions;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Komunikat zwracany prez serwis NBP
+ */
 public class NBPDataException extends Exception {
 
     /**

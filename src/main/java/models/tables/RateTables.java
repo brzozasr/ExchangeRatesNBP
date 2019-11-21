@@ -11,6 +11,15 @@ public class RateTables {
     private String code;
     private double mid;
 
+    /**
+     * Konstruktor obiektu RateTables
+     *
+     * @param country  nazwa kraju
+     * @param symbol   symbol waluty (numeryczny, dotyczy kursów archiwalnych)
+     * @param currency nazwa waluty
+     * @param code     kod waluty
+     * @param mid      przeliczony kurs średni waluty (dotyczy tabel A oraz B)
+     */
     public RateTables(String country, String symbol, String currency, String code, double mid) {
         this.country = country;
         this.symbol = symbol;

@@ -9,6 +9,13 @@ public class Rate {
     private String effectiveDate;
     private double mid;
 
+    /**
+     * Konstruktor obiektu Rate
+     *
+     * @param no            numer tabeli
+     * @param effectiveDate data publikacji
+     * @param mid           przeliczony kurs średni waluty (dotyczy tabel A oraz B)
+     */
     public Rate(String no, String effectiveDate, double mid) {
         this.no = no;
         this.effectiveDate = effectiveDate;

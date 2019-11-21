@@ -11,6 +11,14 @@ public class RateC {
     private double bid;
     private double ask;
 
+    /**
+     * Konstruktor obiektu RateC
+     *
+     * @param no            numer tabel
+     * @param effectiveDate data publikacji
+     * @param bid           przeliczony kurs kupna waluty (dotyczy tabeli C)
+     * @param ask           przeliczony kurs sprzedaży waluty (dotyczy tabeli C)
+     */
     public RateC(String no, String effectiveDate, double bid, double ask) {
         this.no = no;
         this.effectiveDate = effectiveDate;
