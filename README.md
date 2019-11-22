@@ -1,4 +1,4 @@
-# ExchangeRatesNBP
+# exchange-rates-nbp
 Exchange rates and gold quotations NBP (Narodowy Bank Polski) API [![Release](https://jitpack.io/v/brzozasr/ExchangeRatesNBP.svg)](https://jitpack.io/#brzozasr/ExchangeRatesNBP)
 <pre>
 <font style='color: #0000ff'>&#60;dependency&#62;</font>
