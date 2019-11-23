@@ -24,45 +24,50 @@ libraryDependencies += "com.github.brzozasr" % "exchange-rates-nbp" % "1.0.0"
 Middle exchange rates of foreign currencies – table A (multi currency tables, last 30)
 ```java
 try {
-            ArrayOfExchangeRatesTable arrayERT = new TableA().lastTopCountTables(30);
+         ArrayOfExchangeRatesTable arrayERT = new TableA().lastTopCountTables(30);
 
-            for (int i = 0; i < arrayERT.getExchangeRatesTables().size(); i++) {
-                System.out.println(arrayERT.getExchangeRatesTables().get(i).getTable());
-                System.out.println(arrayERT.getExchangeRatesTables().get(i).getNo());
-                System.out.println(arrayERT.getExchangeRatesTables().get(i).getEffectiveDate());
-                for (int j = 0; j < arrayERT.getExchangeRatesTables().get(i).getRates().size(); j++) {
-                    System.out.println(arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
-                            // applies to archive exchange rates, it could return null value
-                            arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +     
-                            // applies to archive exchange rates, it could return null value
-                            arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCurrency() + " - " +
-                            arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
-                            arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getMid());
-                }
+         for (int i = 0; i < arrayERT.getExchangeRatesTables().size(); i++) {
+              System.out.println(arrayERT.getExchangeRatesTables().get(i).getTable());
+              System.out.println(arrayERT.getExchangeRatesTables().get(i).getNo());
+              System.out.println(arrayERT.getExchangeRatesTables().get(i).getEffectiveDate());
+              for (int j = 0; j < arrayERT.getExchangeRatesTables().get(i).getRates().size(); j++) {
+                 System.out.println(
+                         // applies to archive exchange rates, it could return null value
+                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
+                         // applies to archive exchange rates, it could return null value
+                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +                   
+                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCurrency() + " - " +
+                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
+                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getMid());
+               }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
 ```
 Middle exchange rates of foreign currencies – table A (multi currency table from a specific date)
 ```java
 try {
-            ArrayOfExchangeRatesTable arrayERT = new TableA().publishedOnDateTable(LocalDate.of(2010, 2, 25));
-            for (int i = 0; i < arrayERT.getExchangeRatesTables().size(); i++) {
-                System.out.println(arrayERT.getExchangeRatesTables().get(i).getTable());
-                System.out.println(arrayERT.getExchangeRatesTables().get(i).getNo());
-                System.out.println(arrayERT.getExchangeRatesTables().get(i).getEffectiveDate());
-                for (int j = 0; j < arrayERT.getExchangeRatesTables().get(i).getRates().size(); j++) {
-                    System.out.println(arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
-                            arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +
-                            arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCurrency() + " - " +
-                            arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
-                            arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getMid());
-                }
-            }
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
+         ArrayOfExchangeRatesTable arrayERT = new TableA().publishedOnDateTable(LocalDate.of(2010, 2, 25));
+         for (int i = 0; i < arrayERT.getExchangeRatesTables().size(); i++) {
+             System.out.println(arrayERT.getExchangeRatesTables().get(i).getTable());
+             System.out.println(arrayERT.getExchangeRatesTables().get(i).getNo());
+             System.out.println(arrayERT.getExchangeRatesTables().get(i).getEffectiveDate());
+             for (int j = 0; j < arrayERT.getExchangeRatesTables().get(i).getRates().size(); j++) {                        
+                 System.out.println(
+                         // it could return null value
+                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
+                         // it could return null value
+                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +
+                         // it could return null value
+                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCurrency() + " - " +
+                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
+                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getMid());
+             }
+          }
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
 ```
 Middle exchange rates of foreign currencies – table A (for single currency)
 ```java
