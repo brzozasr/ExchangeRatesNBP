@@ -243,4 +243,25 @@ try {
             e.printStackTrace();
         }
   ```
+  Buy and sell prices of foreign currencies – table C (for single currency, from January 2, 2002 to the current date)
+  ```java
+  try {
+            ExchangeRatesSeriesC ersC = new TableC().currencyExchangeRate(CurrencyCodeTableC.USD);
+            for (int i = 0; i < ersC.getRates().size(); i++) {
+                System.out.println(ersC.getRates().get(i).getNo()
+                        + " <-> " + ersC.getRates().get(i).getEffectiveDate()
+                        + " <-> " + ersC.getRates().get(i).getBid()
+                        + " <-> " + ersC.getRates().get(i).getAsk());
+            }
+
+            for (RateC element : ersC.getRates()) {
+                System.out.println(element.getNo() +
+                        " -- " + element.getEffectiveDate() +
+                        " -- " + element.getBid() +
+                        " -- " + element.getAsk());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+  ```
   
