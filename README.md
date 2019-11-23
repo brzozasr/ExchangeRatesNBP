@@ -4,6 +4,9 @@
 ### License
 exchange-rates-nbp is licensed under **Apache Software License, Version 2.0**.
 ***
+### News
+* Version 1.0.0 released on 23-Nov-2019.
+***
 ### Apache Maven
 ```apache maven
 <dependency>
