@@ -69,7 +69,7 @@ try {
           e.printStackTrace();
       }
 ```
-Middle exchange rates of foreign currencies – table A (for single currency)
+Middle exchange rates of foreign currencies – table A (for single currency, until January 2, 2002 to the current date)
 ```java
 try {
             ExchangeRatesSeries ers = new TableA().currencyExchangeRate(CurrencyCodeTableA.USD);
@@ -163,3 +163,32 @@ try {
             e.printStackTrace();
         }
 ```
+Middle exchange rates of foreign currencies – table B (for single currency, until January 2, 2002 to the current date)
+```java
+try {
+            ExchangeRatesSeries exchangeRatesSeries = new TableB().currencyExchangeRate(CurrencyCodeTableB.EGP);
+
+            System.out.println("== Example no 1 ====================================================");
+            for (int i = 0; i < exchangeRatesSeries.getRates().size(); i++) {
+                System.out.println(exchangeRatesSeries.getRates().get(i).getNo()
+                        + " <-> " + exchangeRatesSeries.getRates().get(i).getEffectiveDate()
+                        + " <-> " + exchangeRatesSeries.getRates().get(i).getMid());
+            }
+
+            System.out.println("== Example no 2 ====================================================");
+            for (Rate element : exchangeRatesSeries.getRates()) {
+                System.out.println(element.getNo() +
+                        " -- " + element.getEffectiveDate() +
+                        " -- " + element.getMid());
+            }
+
+            System.out.println("== Example no 3 ====================================================");
+            exchangeRatesSeries.getRates().forEach(
+                    element -> System.out.println(element.getNo() +
+                            " --- " + element.getEffectiveDate() +
+                            " --- " + element.getMid()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ```
