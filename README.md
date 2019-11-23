@@ -273,8 +273,8 @@ try {
             e.printStackTrace();
         }
   ```
-  The price of gold (published in a date range)
-  ```java
+The price of gold (published in a date range)
+```java
   try {
             ArrayOfGoldPrice arrayOfGoldPrice = new Gold().publishedOnDateRangeGoldPrice(
                     LocalDate.of(2014, 3, 1),
@@ -285,7 +285,18 @@ try {
         } catch (IOException e) {
             e.printStackTrace();
         }
-  ```
+```
+  The price of gold (from a specific date)
+```java
+try {
+            ArrayOfGoldPrice arrayOfGoldPrice = new Gold().publishedOnDateGoldPrice(
+                    LocalDate.of(2016, 3, 1));
+            System.out.println(arrayOfGoldPrice.getGoldQuotations().get(0).getDate());
+            System.out.println(arrayOfGoldPrice.getGoldQuotations().get(0).getPrice());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+```
   The price of gold (from January 2, 2013 to the current date)
 ```java
 try {
