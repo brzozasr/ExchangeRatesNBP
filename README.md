@@ -122,7 +122,7 @@ try {
             e.printStackTrace();
         }
 ```
-Middle exchange rates of foreign currencies – table B (tables published in a time range)
+Middle exchange rates of foreign currencies – table B (tables published in a date range)
 ```java
 try {
             ArrayOfExchangeRatesTable arrayERT = new TableB().publishedOnDateRangeTables(
