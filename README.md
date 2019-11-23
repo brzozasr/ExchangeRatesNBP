@@ -35,7 +35,7 @@ try {
                       // applies to archive exchange rates, it could return null value
                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
                       // applies to archive exchange rates, it could return null value
-                      arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +                   
+                      arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +              
                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCurrency() + " - " +
                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getMid());
@@ -53,16 +53,16 @@ try {
              System.out.println(arrayERT.getExchangeRatesTables().get(i).getTable());
              System.out.println(arrayERT.getExchangeRatesTables().get(i).getNo());
              System.out.println(arrayERT.getExchangeRatesTables().get(i).getEffectiveDate());
-             for (int j = 0; j < arrayERT.getExchangeRatesTables().get(i).getRates().size(); j++) {                        
+             for (int j = 0; j < arrayERT.getExchangeRatesTables().get(i).getRates().size(); j++) {
                  System.out.println(
-                         // it could return null value
-                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
-                         // it could return null value
-                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +
-                         // it could return null value
-                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCurrency() + " - " +
-                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
-                         arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getMid());
+                       // it could return null value
+                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
+                       // it could return null value
+                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +
+                       // it could return null value
+                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCurrency() + " - " +
+                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
+                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getMid());
              }
           }
       } catch (IOException e) {
