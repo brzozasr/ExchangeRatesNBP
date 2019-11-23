@@ -50,3 +50,26 @@ try {
             e.printStackTrace();
         }
 ```
+Middle exchange rates of foreign currencies – table A (multi currency tables, last 30)
+```java
+try {
+            ArrayOfExchangeRatesTable arrayERT = new TableA().lastTopCountTables(30);
+
+            for (int i = 0; i < arrayERT.getExchangeRatesTables().size(); i++) {
+                System.out.println(arrayERT.getExchangeRatesTables().get(i).getTable());
+                System.out.println(arrayERT.getExchangeRatesTables().get(i).getNo());
+                System.out.println(arrayERT.getExchangeRatesTables().get(i).getEffectiveDate());
+                for (int j = 0; j < arrayERT.getExchangeRatesTables().get(i).getRates().size(); j++) {
+                    System.out.println(arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
+                            // applies to archive exchange rates, it could return null value
+                            arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +     
+                            // applies to archive exchange rates, it could return null value
+                            arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCurrency() + " - " +
+                            arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
+                            arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getMid());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+```
