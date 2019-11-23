@@ -19,3 +19,34 @@ dependencies {
 ```scala stb
 libraryDependencies += "com.github.brzozasr" % "exchange-rates-nbp" % "1.0.0"
 ```
+***
+## Examples:
+Middle exchange rates of foreign currencies – table A (for single currency)
+```java
+try {
+            ExchangeRatesSeries ers = new TableA().currencyExchangeRate(CurrencyCodeTableA.USD);
+
+            System.out.println("== Example no 1 ====================================================");
+            for (int i = 0; i < ers.getRates().size(); i++) {
+                System.out.println(ers.getRates().get(i).getNo() +
+                        " - " + ers.getRates().get(i).getEffectiveDate() +
+                        " - " + ers.getRates().get(i).getMid());
+            }
+
+            System.out.println("== Example no 2 ====================================================");
+            for(Rate element: ers.getRates()) {
+                System.out.println(element.getNo() +
+                        " -- " + element.getEffectiveDate() +
+                        " -- " + element.getMid());
+            }
+
+            System.out.println("== Example no 3 ====================================================");
+            ers.getRates().forEach(
+                    element -> System.out.println(element.getNo() +
+                            " --- " + element.getEffectiveDate() +
+                            " --- " + element.getMid()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+```
