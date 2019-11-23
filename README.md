@@ -1,6 +1,8 @@
 ## exchange-rates-nbp API for Java
 Exchange rates and gold quotations NBP (Narodowy Bank Polski, National Bank of Poland) API
-```
+***
+Apache Maven
+```apache maven
 <dependency>
   <groupId>com.github.brzozasr</groupId>
   <artifactId>exchange-rates-nbp</artifactId>
