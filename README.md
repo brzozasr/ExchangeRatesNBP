@@ -205,15 +205,15 @@ try {
                 System.out.println(arrayERTC.getExchangeRatesTables().get(i).getEffectiveDate());
                 for (int j = 0; j < arrayERTC.getExchangeRatesTables().get(i).getRates().size(); j++) {
                     System.out.println(
-                            // it could return null value
-                            arrayERTC.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
-                            // it could return null value
-                            arrayERTC.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +
-                            // it could return null value
-                            arrayERTC.getExchangeRatesTables().get(i).getRates().get(j).getCurrency() + " - " +
-                            arrayERTC.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
-                            arrayERTC.getExchangeRatesTables().get(i).getRates().get(j).getBid() + " - " +
-                            arrayERTC.getExchangeRatesTables().get(i).getRates().get(j).getAsk());
+                        // it could return null value
+                        arrayERTC.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
+                        // it could return null value
+                        arrayERTC.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +
+                        // it could return null value
+                        arrayERTC.getExchangeRatesTables().get(i).getRates().get(j).getCurrency() + " - " +
+                        arrayERTC.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
+                        arrayERTC.getExchangeRatesTables().get(i).getRates().get(j).getBid() + " - " +
+                        arrayERTC.getExchangeRatesTables().get(i).getRates().get(j).getAsk());
                 }
             }
         } catch (IOException e) {
