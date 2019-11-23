@@ -1,4 +1,4 @@
-## exchange-rates-nbp API for Java
+## exchange-rates-nbp API for Java  [![javadoc](https://javadoc.io/badge2/com.github.brzozasr/exchange-rates-nbp/javadoc.svg)](https://javadoc.io/doc/com.github.brzozasr/exchange-rates-nbp)
 Exchange rates and gold quotations NBP (Narodowy Bank Polski, National Bank of Poland) API
 ***
 Apache Maven
