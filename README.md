@@ -273,4 +273,30 @@ try {
             e.printStackTrace();
         }
   ```
-  
+  The price of gold (from January 2, 2013 to the current date)
+```java
+try {
+         ArrayOfGoldPrice arrayOfGoldPrice = new Gold().allGoldPrice();
+
+         //Example no 1
+         System.out.println("=======================================================");
+         for (int i = 0; i < arrayOfGoldPrice.getGoldQuotations().size(); i++) {
+             System.out.println(arrayOfGoldPrice.getGoldQuotations().get(i).getDate()
+                     + " - " + arrayOfGoldPrice.getGoldQuotations().get(i).getPrice());
+         }
+
+         //Example no 2
+         System.out.println("=======================================================");
+         for (GoldPrice element : arrayOfGoldPrice.getGoldQuotations()) {
+             System.out.println(element.getDate() + " - " + element.getPrice());
+         }
+
+         //Example no 3
+         System.out.println("=======================================================");
+         arrayOfGoldPrice.getGoldQuotations().forEach(element ->
+                 System.out.println(element.getDate() + " - " + element.getPrice()));
+
+     } catch (IOException e) {
+         e.printStackTrace();
+     }
+```
