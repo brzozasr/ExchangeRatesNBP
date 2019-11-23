@@ -21,7 +21,7 @@ libraryDependencies += "com.github.brzozasr" % "exchange-rates-nbp" % "1.0.0"
 ```
 ***
 ## Examples:
-Middle exchange rates of foreign currencies – table A (multi currency tables, last 30)
+Middle exchange rates of foreign currencies – table A (tables, last top count 30)
 ```java
 try {
          ArrayOfExchangeRatesTable arrayERT = new TableA().lastTopCountTables(30);
@@ -45,7 +45,7 @@ try {
           e.printStackTrace();
       }
 ```
-Middle exchange rates of foreign currencies – table A (multi currency table from a specific date)
+Middle exchange rates of foreign currencies – table A (table from a specific date)
 ```java
 try {
          ArrayOfExchangeRatesTable arrayERT = new TableA().publishedOnDateTable(LocalDate.of(2010, 2, 25));
@@ -192,7 +192,7 @@ try {
         e.printStackTrace();
     }
 ```
-Buy and sell prices of foreign currencies – table C
+Buy and sell prices of foreign currencies – table C (tables published in a date range)
 ```java
 try {
             ArrayOfExchangeRatesTableC arrayERTC = new TableC().publishedOnDateRangeTables(
@@ -220,3 +220,26 @@ try {
             e.printStackTrace();
         }
 ```
+Buy and sell prices of foreign currencies – table C (for single currency, last top count 255)
+```java
+try {
+            ExchangeRatesSeriesC exchangeRatesTableC = new TableC().lastTopCountExchangeRate(CurrencyCodeTableC.GBP, 255);
+            System.out.println(exchangeRatesTableC.getTable());
+                               // applies to archive exchange rates, it could return null value
+            System.out.println(exchangeRatesTableC.getCountry());
+                               // applies to archive exchange rates, it could return null value
+            System.out.println(exchangeRatesTableC.getSymbol());
+            System.out.println(exchangeRatesTableC.getCurrency());
+            System.out.println(exchangeRatesTableC.getCode());
+            for (int i = 0; i < exchangeRatesTableC.getRates().size(); i++) {
+                System.out.println(
+                        exchangeRatesTableC.getRates().get(i).getNo()
+                        + " <-> " + exchangeRatesTableC.getRates().get(i).getEffectiveDate()
+                        + " <-> " + exchangeRatesTableC.getRates().get(i).getBid()
+                        + " <-> " + exchangeRatesTableC.getRates().get(i).getAsk());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+  ```
+  
