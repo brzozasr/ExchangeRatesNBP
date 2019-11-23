@@ -1,5 +1,8 @@
 # exchange-rates-nbp API for Java [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.brzozasr/exchange-rates-nbp/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.brzozasr/exchange-rates-nbp) [![javadoc](https://javadoc.io/badge2/com.github.brzozasr/exchange-rates-nbp/javadoc.svg)](https://javadoc.io/doc/com.github.brzozasr/exchange-rates-nbp)
-Exchange rates and gold quotations NBP (Narodowy Bank Polski, National Bank of Poland) API
+#### Exchange rates and gold quotations (price) NBP (Narodowy Bank Polski, National Bank of Poland) API
+***
+### License
+exchange-rates-nbp is licensed under **Apache Software License, Version 2.0**.
 ***
 ### Apache Maven
 ```apache maven
