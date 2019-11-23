@@ -35,7 +35,7 @@ try {
                       // applies to archive exchange rates, it could return null value
                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
                       // applies to archive exchange rates, it could return null value
-                      arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +              
+                      arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +
                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCurrency() + " - " +
                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
                       arrayERT.getExchangeRatesTables().get(i).getRates().get(j).getMid());
