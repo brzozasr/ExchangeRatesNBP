@@ -15,3 +15,7 @@ dependencies {
    implementation 'com.github.brzozasr:exchange-rates-nbp:1.0.0'
 }
 ```
+### Scala SBT
+```scala stb
+libraryDependencies += "com.github.brzozasr" % "exchange-rates-nbp" % "1.0.0"
+```
