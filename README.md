@@ -192,3 +192,31 @@ try {
         e.printStackTrace();
     }
 ```
+Buy and sell prices of foreign currencies – table C
+```java
+try {
+            ArrayOfExchangeRatesTableC arrayOfExchangeRatesTableC = new TableC().publishedOnDateRangeTables(
+                    LocalDate.of(2015, 7, 1),
+                    LocalDate.of(2015, 9, 30));
+            for (int i = 0; i < arrayOfExchangeRatesTableC.getExchangeRatesTables().size(); i++) {
+                System.out.println(arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getTable());
+                System.out.println(arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getNo());
+                System.out.println(arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getTradingDate());
+                System.out.println(arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getEffectiveDate());
+                for (int j = 0; j < arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().size(); j++) {
+                    System.out.println(
+                            // it could return null value
+                            arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().get(j).getCountry() + " - " +
+                            // it could return null value
+                            arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().get(j).getSymbol() + " - " +
+                            // it could return null value
+                            arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().get(j).getCurrency() + " - " +
+                            arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().get(j).getCode() + " - " +
+                            arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().get(j).getBid() + " - " +
+                            arrayOfExchangeRatesTableC.getExchangeRatesTables().get(i).getRates().get(j).getAsk());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+```
