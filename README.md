@@ -9,3 +9,9 @@ Exchange rates and gold quotations NBP (Narodowy Bank Polski, National Bank of P
   <version>1.0.0</version>
 </dependency>
 ```
+### Gradle Groovy DSL
+```gradle
+dependencies {
+   implementation 'com.github.brzozasr:exchange-rates-nbp:1.0.0'
+}
+```
