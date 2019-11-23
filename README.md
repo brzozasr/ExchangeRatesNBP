@@ -163,7 +163,8 @@ try {
             e.printStackTrace();
         }
 ```
-Middle exchange rates of foreign currencies – table B (for single currency, until January 2, 2002 to the current date)
+Middle exchange rates of foreign currencies – table B 
+(for single currency, until January 2, 2002 to the current date)
 ```java
 try {
             ExchangeRatesSeries exchangeRatesSeries = new TableB().currencyExchangeRate(CurrencyCodeTableB.EGP);
