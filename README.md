@@ -247,6 +247,8 @@ try {
   ```java
   try {
             ExchangeRatesSeriesC ersC = new TableC().currencyExchangeRate(CurrencyCodeTableC.USD);
+            
+            //Example no 1
             for (int i = 0; i < ersC.getRates().size(); i++) {
                 System.out.println(ersC.getRates().get(i).getNo()
                         + " <-> " + ersC.getRates().get(i).getEffectiveDate()
@@ -254,6 +256,7 @@ try {
                         + " <-> " + ersC.getRates().get(i).getAsk());
             }
 
+            //Example no 2
             for (RateC element : ersC.getRates()) {
                 System.out.println(element.getNo() +
                         " -- " + element.getEffectiveDate() +
