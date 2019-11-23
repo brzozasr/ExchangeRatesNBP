@@ -150,15 +150,15 @@ try {
 Middle exchange rates of foreign currencies – table B (currently valid exchange rates for single currency)
 ```java
 try {
-            ExchangeRatesSeries exchangeRatesSeries = new TableB().currentExchangeRate(CurrencyCodeTableB.RUB);
-            System.out.println(exchangeRatesSeries.getTable());
-            System.out.println(exchangeRatesSeries.getCountry());
-            System.out.println(exchangeRatesSeries.getSymbol());
-            System.out.println(exchangeRatesSeries.getCurrency());
-            System.out.println(exchangeRatesSeries.getCode());
-            System.out.println(exchangeRatesSeries.getRates().get(0).getNo()
-                    + " <-> " + exchangeRatesSeries.getRates().get(0).getEffectiveDate() +
-                    " <-> " + exchangeRatesSeries.getRates().get(0).getMid());
+          ExchangeRatesSeries exchangeRatesSeries = new TableB().currentExchangeRate(CurrencyCodeTableB.RUB);
+          System.out.println(exchangeRatesSeries.getTable());
+          System.out.println(exchangeRatesSeries.getCountry());
+          System.out.println(exchangeRatesSeries.getSymbol());
+          System.out.println(exchangeRatesSeries.getCurrency());
+          System.out.println(exchangeRatesSeries.getCode());
+          System.out.println(exchangeRatesSeries.getRates().get(0).getNo()
+                  + " <-> " + exchangeRatesSeries.getRates().get(0).getEffectiveDate() +
+                  " <-> " + exchangeRatesSeries.getRates().get(0).getMid());
         } catch (IOException e) {
             e.printStackTrace();
         }
