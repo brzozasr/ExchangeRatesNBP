@@ -273,6 +273,19 @@ try {
             e.printStackTrace();
         }
   ```
+  The price of gold (published in a date range)
+  ```java
+  try {
+            ArrayOfGoldPrice arrayOfGoldPrice = new Gold().publishedOnDateRangeGoldPrice(
+                    LocalDate.of(2014, 3, 1),
+                    LocalDate.of(2015, 3, 2));
+            for (GoldPrice element : arrayOfGoldPrice.getGoldQuotations()) {
+                System.out.println(element.getDate() + " - " + element.getPrice());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+  ```
   The price of gold (from January 2, 2013 to the current date)
 ```java
 try {
