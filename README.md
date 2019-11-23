@@ -223,7 +223,8 @@ try {
 Buy and sell prices of foreign currencies – table C (for single currency, last top count 255)
 ```java
 try {
-            ExchangeRatesSeriesC exchangeRatesTableC = new TableC().lastTopCountExchangeRate(CurrencyCodeTableC.GBP, 255);
+            ExchangeRatesSeriesC exchangeRatesTableC = new TableC().lastTopCountExchangeRate(
+                          CurrencyCodeTableC.GBP, 255);
             System.out.println(exchangeRatesTableC.getTable());
                                // applies to archive exchange rates, it could return null value
             System.out.println(exchangeRatesTableC.getCountry());
