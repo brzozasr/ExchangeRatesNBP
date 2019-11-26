@@ -30,7 +30,7 @@ libraryDependencies += "com.github.brzozasr" % "exchange-rates-nbp" % "1.0.1"
 ```
 ***
 ## Examples:
-[Go to an example of using the repository (exchange-rates-nbp API for Java) with JavaFx /LineChart/](https://github.com/brzozasr/jfx-exchange-chart-nbp)
+  [Go to an example of using the repository (exchange-rates-nbp API for Java) with JavaFx /LineChart/](https://github.com/brzozasr/jfx-exchange-chart-nbp)
 ---
 Middle exchange rates of foreign currencies – table A (tables, last top count 30)
 ```java
