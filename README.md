@@ -7,6 +7,7 @@ exchange-rates-nbp is licensed under **Apache Software License, Version 2.0**.
 ### News
 * Version 1.0.0 released on 23-Nov-2019.
 * Version 1.0.1 released on 26-Nov-2019.
+
    Data types have been fixed and methods selecting the highest and lowest values of exchange rates and gold prices have been added
 ***
 ### Apache Maven
