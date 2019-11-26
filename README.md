@@ -15,18 +15,18 @@ exchange-rates-nbp is licensed under **Apache Software License, Version 2.0**.
 <dependency>
   <groupId>com.github.brzozasr</groupId>
   <artifactId>exchange-rates-nbp</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 ### Gradle Groovy DSL
 ```gradle
 dependencies {
-   implementation 'com.github.brzozasr:exchange-rates-nbp:1.0.0'
+   implementation 'com.github.brzozasr:exchange-rates-nbp:1.0.1'
 }
 ```
 ### Scala SBT
 ```scala stb
-libraryDependencies += "com.github.brzozasr" % "exchange-rates-nbp" % "1.0.0"
+libraryDependencies += "com.github.brzozasr" % "exchange-rates-nbp" % "1.0.1"
 ```
 ***
 ## Examples:
