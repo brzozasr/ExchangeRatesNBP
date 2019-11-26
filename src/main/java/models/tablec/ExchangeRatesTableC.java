@@ -1,5 +1,6 @@
 package models.tablec;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -10,8 +11,8 @@ public class ExchangeRatesTableC {
 
     private String table;
     private String no;
-    private String tradingDate;
-    private String effectiveDate;
+    private LocalDate tradingDate;
+    private LocalDate effectiveDate;
     private List<RateTablesC> rates;
 
     /**
@@ -23,7 +24,7 @@ public class ExchangeRatesTableC {
      * @param effectiveDate data publikacji
      * @param rates         lista notowań walut {List&#60;RateTablesC&#62;}
      */
-    public ExchangeRatesTableC(String table, String no, String tradingDate, String effectiveDate, List<RateTablesC> rates) {
+    public ExchangeRatesTableC(String table, String no, LocalDate tradingDate, LocalDate effectiveDate, List<RateTablesC> rates) {
         this.table = table;
         this.tradingDate = tradingDate;
         this.no = no;
@@ -56,7 +57,7 @@ public class ExchangeRatesTableC {
      *
      * @return datę notowania kursów kupna i sprzedaży walut (np. "2012-05-08")
      */
-    public String getTradingDate() {
+    public LocalDate getTradingDate() {
         return tradingDate;
     }
 
@@ -66,7 +67,7 @@ public class ExchangeRatesTableC {
      *
      * @return data publikacji (np. "2012-05-10")
      */
-    public String getEffectiveDate() {
+    public LocalDate getEffectiveDate() {
         return effectiveDate;
     }
 

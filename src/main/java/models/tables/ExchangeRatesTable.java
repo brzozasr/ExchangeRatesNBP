@@ -1,5 +1,6 @@
 package models.tables;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
 public class ExchangeRatesTable {
     private String table;
     private String no;
-    private String effectiveDate;
+    private LocalDate effectiveDate;
     private List<RateTables> rates;
 
     /**
@@ -20,7 +21,7 @@ public class ExchangeRatesTable {
      * @param effectiveDate data publikacji
      * @param rates         lista notowań walut {List&#60;RateTables&#62;}
      */
-    public ExchangeRatesTable(String table, String no, String effectiveDate, List<RateTables> rates) {
+    public ExchangeRatesTable(String table, String no, LocalDate effectiveDate, List<RateTables> rates) {
         this.table = table;
         this.no = no;
         this.effectiveDate = effectiveDate;
@@ -50,7 +51,7 @@ public class ExchangeRatesTable {
      *
      * @return data publikacji (np. "2012-05-10")
      */
-    public String getEffectiveDate() {
+    public LocalDate getEffectiveDate() {
         return effectiveDate;
     }
 

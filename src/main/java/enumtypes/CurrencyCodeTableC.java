@@ -5,37 +5,25 @@ package enumtypes;
  */
 public enum CurrencyCodeTableC {
     /**
-     * dolar amerykański
+     * szyling austriacki (waluta archiwalna)
      */
-    USD,
+    ATS,
     /**
      * dolar australijski
      */
     AUD,
     /**
+     * frank belgijski (waluta archiwalna)
+     */
+    BEF,
+    /**
      * dolar kanadyjski
      */
     CAD,
     /**
-     * euro
-     */
-    EUR,
-    /**
-     * forint (Węgry)
-     */
-    HUF,
-    /**
      * frank szwajcarski
      */
     CHF,
-    /**
-     * funt szterling
-     */
-    GBP,
-    /**
-     * jen (Japonia)
-     */
-    JPY,
     /**
      * korona czeska
      */
@@ -45,29 +33,17 @@ public enum CurrencyCodeTableC {
      */
     DKK,
     /**
-     * korona norweska
-     */
-    NOK,
-    /**
-     * korona szwedzka
-     */
-    SEK,
-    /**
-     * SDR (MFW) umowna jednostka monetarna, mająca charakter pieniądza bezgotówkowego
-     */
-    XDR,
-    /**
-     * szyling austriacki (waluta archiwalna)
-     */
-    ATS,
-    /**
-     * frank belgijski (waluta archiwalna)
-     */
-    BEF,
-    /**
      * korona estońska (waluta archiwalna)
      */
     EEK,
+    /**
+     * peseta hiszpańska (waluta archiwalna)
+     */
+    ESP,
+    /**
+     * euro
+     */
+    EUR,
     /**
      * marka fińska (waluta archiwalna)
      */
@@ -77,31 +53,56 @@ public enum CurrencyCodeTableC {
      */
     FRF,
     /**
+     * funt szterling
+     */
+    GBP,
+    /**
      * drachma grecka (waluta archiwalna)
      */
     GRD,
     /**
-     * peseta hiszpańska (waluta archiwalna)
+     * forint (Węgry)
      */
-    ESP,
-    /**
-     * gulden holenderski (waluta archiwalna)
-     */
-    NLG,
+    HUF,
     /**
      * funt irlandzki (waluta archiwalna)
      */
     IEP,
     /**
+     * lir włoski (waluta archiwalna)
+     */
+    ITL,
+    /**
+     * jen (Japonia)
+     */
+    JPY,
+    /**
      * franc luksemburskiej (waluta archiwalna)
      */
     LUF,
+    /**
+     * gulden holenderski (waluta archiwalna)
+     */
+    NLG,
+    /**
+     * korona norweska
+     */
+    NOK,
     /**
      * escudo portugalskie (waluta archiwalna)
      */
     PTE,
     /**
-     * lir włoski (waluta archiwalna)
+     * korona szwedzka
      */
-    ITL
+    SEK,
+    /**
+     * dolar amerykański
+     */
+    USD,
+    /**
+     * SDR (MFW) umowna jednostka monetarna, mająca charakter pieniądza bezgotówkowego
+     */
+    XDR
+
 }

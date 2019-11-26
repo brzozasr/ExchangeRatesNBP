@@ -1,5 +1,7 @@
 package models.ratesc;
 
+import java.time.LocalDate;
+
 /**
  * Model kursów kupna i sprzedaży walut obcych pojedynczej waluty osadzony w modelu {ExchangeRatesSeriesC}
  * dla tabeli typu C oraz symbolu waluty.
@@ -7,7 +9,7 @@ package models.ratesc;
 public class RateC {
 
     private String no;
-    private String effectiveDate;
+    private LocalDate effectiveDate;
     private double bid;
     private double ask;
 
@@ -19,7 +21,7 @@ public class RateC {
      * @param bid           przeliczony kurs kupna waluty (dotyczy tabeli C)
      * @param ask           przeliczony kurs sprzedaży waluty (dotyczy tabeli C)
      */
-    public RateC(String no, String effectiveDate, double bid, double ask) {
+    public RateC(String no, LocalDate effectiveDate, double bid, double ask) {
         this.no = no;
         this.effectiveDate = effectiveDate;
         this.bid = bid;
@@ -40,7 +42,7 @@ public class RateC {
      *
      * @return data publikacji (np. "2016-04-04")
      */
-    public String getEffectiveDate() {
+    public LocalDate getEffectiveDate() {
         return effectiveDate;
     }
 

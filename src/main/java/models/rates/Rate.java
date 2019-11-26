@@ -1,12 +1,14 @@
 package models.rates;
 
+import java.time.LocalDate;
+
 /**
  * Model notowania średniego kursu pojedynczej waluty osadzony w modelu {ExchangeRatesSeries}
  * dla określonego typu tabeli oraz symbolu waluty.
  */
 public class Rate {
     private String no;
-    private String effectiveDate;
+    private LocalDate effectiveDate;
     private double mid;
 
     /**
@@ -16,7 +18,7 @@ public class Rate {
      * @param effectiveDate data publikacji
      * @param mid           przeliczony kurs średni waluty (dotyczy tabel A oraz B)
      */
-    public Rate(String no, String effectiveDate, double mid) {
+    public Rate(String no, LocalDate effectiveDate, double mid) {
         this.no = no;
         this.effectiveDate = effectiveDate;
         this.mid = mid;
@@ -36,7 +38,7 @@ public class Rate {
      *
      * @return data publikacji (np. "2016-04-04")
      */
-    public String getEffectiveDate() {
+    public LocalDate getEffectiveDate() {
         return effectiveDate;
     }
 

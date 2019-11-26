@@ -65,7 +65,8 @@ class ReadJSON {
                 String no = rates.getJSONObject(i).getString("no");
                 String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
                 double mid = rates.getJSONObject(i).getDouble("mid");
-                rateArrayList.add(new Rate(no, effectiveDate, mid));
+                LocalDate formatDate = LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                rateArrayList.add(new Rate(no, formatDate, mid));
             }
             return new ExchangeRatesSeries(table, country, symbol, currency, code, rateArrayList);
         }
@@ -111,7 +112,8 @@ class ReadJSON {
                 String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
                 double bid = rates.getJSONObject(i).getDouble("bid");
                 double ask = rates.getJSONObject(i).getDouble("ask");
-                rateArrayList.add(new RateC(no, effectiveDate, bid, ask));
+                LocalDate formatDate = LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                rateArrayList.add(new RateC(no, formatDate, bid, ask));
             }
             return new ExchangeRatesSeriesC(table, country, symbol, currency, code, rateArrayList);
         }
@@ -140,7 +142,8 @@ class ReadJSON {
                 String no = rates.getJSONObject(i).getString("no");
                 String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
                 double mid = rates.getJSONObject(i).getDouble("mid");
-                rateArrayList.add(new Rate(no, effectiveDate, mid));
+                LocalDate formatDate = LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                rateArrayList.add(new Rate(no, formatDate, mid));
             }
             return new ExchangeRatesSeries(rateArrayList);
         }
@@ -170,7 +173,8 @@ class ReadJSON {
                 String effectiveDate = rates.getJSONObject(i).getString("effectiveDate");
                 double bid = rates.getJSONObject(i).getDouble("bid");
                 double ask = rates.getJSONObject(i).getDouble("ask");
-                rateArrayList.add(new RateC(no, effectiveDate, bid, ask));
+                LocalDate formatDate = LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                rateArrayList.add(new RateC(no, formatDate, bid, ask));
             }
             return new ExchangeRatesSeriesC(rateArrayList);
         }
@@ -199,6 +203,7 @@ class ReadJSON {
                 String table = arrayOfExchangeRatesTable.getJSONObject(i).getString("table");
                 String no = arrayOfExchangeRatesTable.getJSONObject(i).getString("no");
                 String effectiveDate = arrayOfExchangeRatesTable.getJSONObject(i).getString("effectiveDate");
+                LocalDate formatEffectiveDate = LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 JSONArray arrayRatesTables = arrayOfExchangeRatesTable.getJSONObject(i).getJSONArray("rates");
                 List<RateTables> listRateTables = new ArrayList<>();
 
@@ -219,7 +224,7 @@ class ReadJSON {
                     double mid = arrayRatesTables.getJSONObject(j).getDouble("mid");
                     listRateTables.add(new RateTables(country, symbol, currency, code, mid));
                 }
-                listExchangeRatesTables.add(new ExchangeRatesTable(table, no, effectiveDate, listRateTables));
+                listExchangeRatesTables.add(new ExchangeRatesTable(table, no, formatEffectiveDate, listRateTables));
             }
             return new ArrayOfExchangeRatesTable(listExchangeRatesTables);
         }
@@ -248,7 +253,9 @@ class ReadJSON {
                 String table = arrayOfExchangeRatesTableC.getJSONObject(i).getString("table");
                 String no = arrayOfExchangeRatesTableC.getJSONObject(i).getString("no");
                 String tradingDate = arrayOfExchangeRatesTableC.getJSONObject(i).getString("tradingDate");
+                LocalDate formatTradingDate = LocalDate.parse(tradingDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 String effectiveDate = arrayOfExchangeRatesTableC.getJSONObject(i).getString("effectiveDate");
+                LocalDate formatEffectiveDate = LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 JSONArray arrayRatesTables = arrayOfExchangeRatesTableC.getJSONObject(i).getJSONArray("rates");
                 List<RateTablesC> listRateTablesC = new ArrayList<>();
 
@@ -270,7 +277,7 @@ class ReadJSON {
                     double ask = arrayRatesTables.getJSONObject(j).getDouble("ask");
                     listRateTablesC.add(new RateTablesC(country, symbol, currency, code, bid, ask));
                 }
-                listExchangeRatesTablesC.add(new ExchangeRatesTableC(table, no, tradingDate, effectiveDate, listRateTablesC));
+                listExchangeRatesTablesC.add(new ExchangeRatesTableC(table, no, formatTradingDate, formatEffectiveDate, listRateTablesC));
             }
             return new ArrayOfExchangeRatesTableC(listExchangeRatesTablesC);
         }

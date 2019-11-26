@@ -1,6 +1,10 @@
 package models.ratesc;
 
 
+import models.rates.Rate;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -102,5 +106,143 @@ public class ExchangeRatesSeriesC {
      */
     public List<RateC> getRates() {
         return rates;
+    }
+
+    /**
+     * Pobiera maksymalną (najwyższą) wartość przeliczoną kursu kupna waluty z wybranego przedziału czasowego
+     * (np. ostanie 30 notowań - new TableC().lastTopCountExchangeRate(CurrencyCodeTableC.USD, 30)).
+     *
+     * @return maksymalną (najwyższą) przeliczoną kursu kupna waluty
+     */
+    public Double getBidMax() {
+        List<RateC> list = rates;
+        if (list.size() > 0) {
+            List<Double> bid = new ArrayList<>();
+            for (RateC bids : list) {
+                bid.add(bids.getBid());
+            }
+            return Collections.max(bid);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Pobiera minimalną (najniższą) wartość przeliczoną kursu kupna waluty z wybranego przedziału czasowego
+     * (np. ostanie 30 notowań - new TableA().lastTopCountExchangeRate(CurrencyCodeTableA.USD, 30)).
+     *
+     * @return minimalną (najniższą) wartość przeliczoną kursu kupna waluty
+     */
+    public Double getBidMin() {
+        List<RateC> list = rates;
+        if (list.size() > 0) {
+            List<Double> bid = new ArrayList<>();
+            for (RateC bids : list) {
+                bid.add(bids.getBid());
+            }
+            return Collections.min(bid);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Pobiera maksymalną (najwyższą) wartość przeliczoną kursu sprzedaży waluty z wybranego przedziału czasowego
+     * (np. od 2 stycznia 2002 r. do bieżącej daty - new TableC().currencyExchangeRate(CurrencyCodeTableC.USD)).
+     *
+     * @return maksymalną (najwyższą) przeliczoną kursu sprzedaży waluty
+     */
+    public Double getAskMax() {
+        List<RateC> list = rates;
+        if (list.size() > 0) {
+            List<Double> ask = new ArrayList<>();
+            for (RateC asks : list) {
+                ask.add(asks.getAsk());
+            }
+            return Collections.max(ask);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Pobiera minimalną (najniższą) wartość przeliczoną kursu sprzedaży waluty z wybranego przedziału czasowego
+     * (np. od 2 stycznia 2002 r. do bieżącej daty - new TableC().currencyExchangeRate(CurrencyCodeTableC.USD)).
+     *
+     * @return minimalną (najniższą) wartość przeliczoną kursu sprzedaży waluty
+     */
+    public Double getAskMin() {
+        List<RateC> list = rates;
+        if (list.size() > 0) {
+            List<Double> ask = new ArrayList<>();
+            for (RateC asks : list) {
+                ask.add(asks.getAsk());
+            }
+            return Collections.min(ask);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Pobiera maksymalną (najwyższą) wartość przeliczoną kursu kupna i sprzedaży waluty z wybranego przedziału czasowego
+     * (np. od 2 stycznia 2002 r. do bieżącej daty - new TableC().currencyExchangeRate(CurrencyCodeTableC.USD)).
+     *
+     * @return maksymalną (najwyższą) przeliczoną kursu kupna i sprzedaży waluty
+     */
+    public Double getMax() {
+        List<RateC> list = rates;
+        if (list.size() > 0) {
+            List<Double> bid = new ArrayList<>();
+            for (RateC bids : list) {
+                bid.add(bids.getBid());
+            }
+            double maxBid = Collections.max(bid);
+
+            List<Double> ask = new ArrayList<>();
+            for (RateC asks : list) {
+                ask.add(asks.getAsk());
+            }
+            double maxAsk = Collections.max(ask);
+
+            List<Double> upper = new ArrayList<>();
+            upper.add(maxBid);
+            upper.add(maxAsk);
+
+            return Collections.max(upper);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Pobiera minimalną (najniższą) wartość przeliczoną kursu kupna i sprzedaży waluty z wybranego przedziału czasowego
+     * (np. od 2 stycznia 2002 r. do bieżącej daty - new TableC().currencyExchangeRate(CurrencyCodeTableC.USD)).
+     *
+     * @return minimalną (najniższą) wartość przeliczoną kursu kupna i sprzedaży waluty
+     */
+    public Double getMin() {
+        List<RateC> list = rates;
+        if (list.size() > 0) {
+            List<Double> bid = new ArrayList<>();
+            for (RateC bids : list) {
+                bid.add(bids.getBid());
+            }
+            double minBid = Collections.min(bid);
+
+            List<Double> ask = new ArrayList<>();
+            for (RateC asks : list) {
+                ask.add(asks.getAsk());
+            }
+            double minAsk = Collections.min(ask);
+
+            List<Double> lower = new ArrayList<>();
+            lower.add(minBid);
+            lower.add(minAsk);
+
+            return Collections.min(lower);
+        } else {
+            return null;
+        }
     }
 }

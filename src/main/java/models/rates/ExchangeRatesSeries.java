@@ -1,5 +1,7 @@
 package models.rates;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -99,5 +101,43 @@ public class ExchangeRatesSeries {
      */
     public List<Rate> getRates() {
         return rates;
+    }
+
+    /**
+     * Pobiera maksymalną (najwyższą) wartość przeliczoną kursu średniego waluty z wybranego przedziału czasowego
+     * (np. ostanie 30 notowań - new TableA().lastTopCountExchangeRate(CurrencyCodeTableA.GBP, 30)).
+     *
+     * @return maksymalną (najwyższą) wartość przeliczoną kursu średniego waluty
+     */
+    public Double getMax() {
+        List<Rate> list = rates;
+        if (list.size() > 0) {
+            List<Double> mid = new ArrayList<>();
+            for (Rate mids : list) {
+                mid.add(mids.getMid());
+            }
+            return Collections.max(mid);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Pobiera minimalną (najniższą) wartość przeliczoną kursu średniego waluty z wybranego przedziału czasowego
+     * (np. ostanie 30 notowań - new TableA().lastTopCountExchangeRate(CurrencyCodeTableA.GBP, 30)).
+     *
+     * @return minimalną (najniższą) wartość przeliczoną kursu średniego waluty
+     */
+    public Double getMin() {
+        List<Rate> list = rates;
+        if (list.size() > 0) {
+            List<Double> mid = new ArrayList<>();
+            for (Rate mids : list) {
+                mid.add(mids.getMid());
+            }
+            return Collections.min(mid);
+        } else {
+            return null;
+        }
     }
 }
