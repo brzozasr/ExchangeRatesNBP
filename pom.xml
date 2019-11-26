@@ -6,11 +6,11 @@
 
     <groupId>com.github.brzozasr</groupId>
     <artifactId>exchange-rates-nbp</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <name>Exchange rates NBP API</name>
+    <name>Exchange rates NBP API for Java</name>
     <description>Exchange rates and gold quotations NBP (Narodowy Bank Polski) API for Java</description>
     <url>https://github.com/brzozasr/exchange-rates-nbp</url>
     <licenses>
